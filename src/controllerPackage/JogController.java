@@ -172,7 +172,9 @@ public class JogController implements Initializable{
     }
 
     // end effector open/close
-    @FXML private void effectorButtonClicked(){}
+    @FXML private void effectorButtonClicked(){
+        MainModel.getInstance().currentLink().sendToneMessage(4,angleValue4,0);
+    }
 
 
     // jog buttons
