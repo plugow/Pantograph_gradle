@@ -30,7 +30,6 @@ public class Main extends Application {
         // set startWindow
         startWindow.setTitle("Pantograph");
         startWindow.setScene(new Scene(root3, 300, 300));
-        //startWindow.initModality(Modality.APPLICATION_MODAL);
         startWindow.show();
 
         //Pause for Preview
