@@ -3,10 +3,9 @@
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerPackage.StartWindowController">
+<VBox alignment="CENTER" prefHeight="167.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerPackage.StartWindowController">
     <children>
         <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" text="Pantograph" textAlignment="CENTER" VBox.vgrow="ALWAYS">
             <VBox.margin>
@@ -22,6 +21,11 @@
                     <font>
                         <Font size="18.0" />
                     </font></Button>
+            <Button fx:id="simulationMode" mnemonicParsing="false" onAction="#simulationModeClicked" text="Symulacja">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
                 <Button fx:id="checkButton" mnemonicParsing="false" onAction="#checkButtonClicked" text="Wyjdź">
                     <font>
                         <Font size="18.0" />

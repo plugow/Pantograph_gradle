@@ -29,16 +29,18 @@ public class Main extends Application {
 
         // set startWindow
         startWindow.setTitle("Pantograph");
-        startWindow.setScene(new Scene(root3, 300, 300));
+        startWindow.setScene(new Scene(root3, 340, 200));
         startWindow.show();
 
         //Pause for Preview
         PauseTransition delay = new PauseTransition(Duration.seconds(1));
-        delay.setOnFinished(event -> startWindow.setScene(new Scene(root2, 300, 300)));
+        delay.setOnFinished(event -> startWindow.setScene(new Scene(root2, 340, 200)));
         delay.play();
 
         MainModel.getInstance().currentStage().setTitle("Pantograph");
         MainModel.getInstance().currentStage().setScene(new Scene(root, 500, 500));
+
+
 
 
 

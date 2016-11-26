@@ -1,5 +1,6 @@
 package controllerPackage;
 
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,19 +16,14 @@ import java.util.ResourceBundle;
 
 public class MainWindowController implements Initializable{
     private int power=IProtocol.LOW;
-    Stage jogWindow=new Stage();
-    @FXML
-    Label informationBar;
+    private Stage jogWindow=new Stage();
+    @FXML Label informationBar;
     @FXML Button ledOn;
 
 
-    //public Stage stage=(Stage) informationBar.getScene().getWindow();
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //informationBar.setText("Status: "+MainModel.getInstance().currentLabel().getText());
-
-
+        MainModel.getInstance().currentLabel().textProperty().addListener((observable, oldValue, newValue) -> informationBar.setText(newValue));
     }
 
 
@@ -62,8 +58,7 @@ public class MainWindowController implements Initializable{
     }
 
     @FXML private void disconnectButtonClicked(){
-        //MainModel.getInstance().currentLink().disconnect();
-        //Link.destroyInstance(MainModel.getInstance().currentLink().getName());
+
     }
 
 
