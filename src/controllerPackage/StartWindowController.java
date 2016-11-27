@@ -17,12 +17,8 @@ import static javafx.application.Platform.exit;
 
 public class StartWindowController {
 
-
-
-
     private Link link= MainModel.getInstance().currentLink();
     private List<String> portList;
-    //Stage mainWindow=new Stage();
     @FXML public Label label;
     @FXML private Button connectButton;
 
