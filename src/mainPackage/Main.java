@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.util.Arrays;
 
 
 public class Main extends Application {
@@ -39,6 +40,12 @@ public class Main extends Application {
 
         MainModel.getInstance().currentStage().setTitle("Pantograph");
         MainModel.getInstance().currentStage().setScene(new Scene(root, 900, 600));
+
+        double pi=Math.PI;
+
+        ForwardKin fk=new ForwardKin();
+        double[][] wynik=fk.forward(pi/2,pi/2,pi/2);
+        System.out.println(Arrays.deepToString(wynik));
 
 
 
