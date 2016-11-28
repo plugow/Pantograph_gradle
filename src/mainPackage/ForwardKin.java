@@ -100,6 +100,7 @@ public class ForwardKin {
             for(int j = 0;j < p;j++){
                 for(int k = 0;k < n;k++){
                     ans[i][j] += a[i][k] * b[k][j];
+                    if((ans[i][j]<0 && ans[i][j]>-0.001)|| (ans[i][j]>0 && ans[i][j]<0.001)) ans[i][j]=0;
                 }
             }
         }
