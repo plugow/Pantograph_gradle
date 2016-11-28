@@ -38,7 +38,7 @@ public class Main extends Application {
         delay.play();
 
         MainModel.getInstance().currentStage().setTitle("Pantograph");
-        MainModel.getInstance().currentStage().setScene(new Scene(root, 500, 500));
+        MainModel.getInstance().currentStage().setScene(new Scene(root, 900, 600));
 
 
 

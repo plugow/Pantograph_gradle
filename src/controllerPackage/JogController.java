@@ -54,6 +54,7 @@ public class JogController implements Initializable{
         public void run() {
             velocity=(int)velocitySlider.getValue()*255/100;
             angleValue1-=1;
+            MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue1));
             MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
         }
     }
@@ -104,6 +105,8 @@ public class JogController implements Initializable{
     private int angleValue4=90;
 
 
+
+
     // initialize method
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -118,6 +121,7 @@ public class JogController implements Initializable{
         zPlus.setDisable(true);
         velocitySlider.valueProperty().addListener((obs, oldval, newVal) ->
                 velocitySlider.setValue(newVal.intValue()));
+
 
     }
 
@@ -182,6 +186,7 @@ public class JogController implements Initializable{
     @FXML private void firstMinusClicked(){
         System.out.println(angleValue1);
         angleValue1-=1;
+        MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue1));
         MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,0);
 
     }

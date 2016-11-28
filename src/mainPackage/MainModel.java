@@ -26,6 +26,9 @@ public class MainModel {
         return stage;
     }
 
+    public Label value1=new Label("1");
+    public Label currentValue1(){return value1;}
+
 
 
 }
