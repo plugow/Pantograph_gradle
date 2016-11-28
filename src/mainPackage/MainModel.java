@@ -29,6 +29,14 @@ public class MainModel {
     public Label value1=new Label("1");
     public Label currentValue1(){return value1;}
 
+    public Label value2=new Label("2");
+    public Label currentValue2(){return value2;}
+
+    public Label value3=new Label("3");
+    public Label currentValue3(){return value3;}
+
+
+
 
 
 }

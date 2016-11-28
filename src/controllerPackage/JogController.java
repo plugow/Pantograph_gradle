@@ -46,6 +46,7 @@ public class JogController implements Initializable{
         public void run() {
             System.out.println(angleValue1);
             angleValue1+=1;
+            MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue1));
             MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
         }
     }
@@ -64,6 +65,7 @@ public class JogController implements Initializable{
         public void run() {
             System.out.println(angleValue2);
             angleValue2+=1;
+            MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue2));
             MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);
         }
     }
@@ -72,6 +74,7 @@ public class JogController implements Initializable{
         public void run() {
             velocity=(int)velocitySlider.getValue()*255/100;
             angleValue2-=1;
+            MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue2));
             MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);
         }
     }
@@ -81,6 +84,7 @@ public class JogController implements Initializable{
         public void run() {
             System.out.println(angleValue3);
             angleValue3+=1;
+            MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue3));
             MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
         }
     }
@@ -89,6 +93,7 @@ public class JogController implements Initializable{
         public void run() {
             velocity=(int)velocitySlider.getValue()*255/100;
             angleValue3-=1;
+            MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue3));
             MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
         }
     }
@@ -194,6 +199,7 @@ public class JogController implements Initializable{
         angleValue1+=1;
         System.out.println(angleValue1);
         MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,0);
+        MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue1));
 
     }
 
@@ -201,12 +207,14 @@ public class JogController implements Initializable{
     @FXML private void secondMinusClicked(){
         System.out.println(angleValue2);
         angleValue2-=1;
+        MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue2));
         MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,0);
 
     }
     @FXML private void secondPlusClicked(){
         angleValue2+=1;
         System.out.println(angleValue2);
+        MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue2));
         MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,0);
 
     }
@@ -215,12 +223,14 @@ public class JogController implements Initializable{
     @FXML private void thirdMinusClicked(){
         System.out.println(angleValue3);
         angleValue3-=1;
+        MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue3));
         MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,0);
 
     }
     @FXML private void thirdPlusClicked(){
         angleValue3+=1;
         System.out.println(angleValue3);
+        MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue3));
         MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,0);
 
     }
