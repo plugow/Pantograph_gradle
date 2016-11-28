@@ -45,22 +45,29 @@ public class MainWindowController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         MainModel.getInstance().currentLabel().textProperty().addListener((observable, oldValue, newValue) -> informationBar.setText(newValue));
         MainModel.getInstance().currentValue1().textProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println(Integer.parseInt(newValue));
-            alfa1-=pi/180;
+            alfa1=Math.toRadians(Integer.parseInt(newValue));
             setForwardKin(alfa1,alfa2,alfa3);
-
-
 
         });
 
+        MainModel.getInstance().currentValue2().textProperty().addListener((observable, oldValue, newValue) -> {
+            alfa2=Math.toRadians(Integer.parseInt(newValue));
+            setForwardKin(alfa1,alfa2,alfa3);
 
+        });
+
+        MainModel.getInstance().currentValue3().textProperty().addListener((observable, oldValue, newValue) -> {
+            alfa3=Math.toRadians(Integer.parseInt(newValue));
+            setForwardKin(alfa1,alfa2,alfa3);
+
+        });
 
 
 
         setForwardKin(alfa1,alfa2,alfa3);
         pane.getChildren().add(swingNode);
 
-        Platform.setImplicitExit(false);
+
 
 
 
@@ -71,23 +78,6 @@ public class MainWindowController implements Initializable{
 
         power = IProtocol.HIGH;
 
-//        MainModel.getInstance().currentLink().sendPowerPinSwitch(3,power);
-//        point1[0]+=100;
-//        point1[1]+=100;
-//        point1[2]+=100;
-//        double[] x = { 0, point1[0], 50, 100};
-//        double[] y = { 0, point1[1], 100, 100};
-//        double[] z = { 0, point1[2], 200, 100};
-//        plot3.removeAllPlots();
-//        plot3=new Plot3DPanel();
-//        plot3.addLinePlot("plot", Color.BLACK,x,y,z);
-//        plot3.setPreferredSize(new Dimension(500,500));
-//
-//        swingNode.setContent(plot3);
-
-
-
-
 
     }
 
@@ -95,9 +85,6 @@ public class MainWindowController implements Initializable{
         power = IProtocol.LOW;
 
         MainModel.getInstance().currentLink().sendPowerPinSwitch(3,power);
-
-
-
 
     }
 
@@ -138,8 +125,8 @@ public class MainWindowController implements Initializable{
 
         plot3.addLinePlot("plot", Color.BLACK,x,y,z);
         plot3.addScatterPlot("plot2",Color.BLUE,x,y,z);
-        plot3.setFixedBounds(0,-600,500);
-        plot3.setFixedBounds(1,-500,500);
+        plot3.setFixedBounds(0,-900,900);
+        plot3.setFixedBounds(1,-900,900);
         plot3.setFixedBounds(2,0,1000);
         plot3.setPreferredSize(new Dimension(500,500));
 
