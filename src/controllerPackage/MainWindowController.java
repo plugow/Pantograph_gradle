@@ -1,6 +1,7 @@
 package controllerPackage;
 
 
+import javafx.application.Platform;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,7 +46,6 @@ public class MainWindowController implements Initializable{
         MainModel.getInstance().currentLabel().textProperty().addListener((observable, oldValue, newValue) -> informationBar.setText(newValue));
         MainModel.getInstance().currentValue1().textProperty().addListener((observable, oldValue, newValue) -> {
             System.out.println(Integer.parseInt(newValue));
-            informationBar.setText(newValue);
             alfa1-=pi/180;
             setForwardKin(alfa1,alfa2,alfa3);
 
@@ -60,6 +60,7 @@ public class MainWindowController implements Initializable{
         setForwardKin(alfa1,alfa2,alfa3);
         pane.getChildren().add(swingNode);
 
+        Platform.setImplicitExit(false);
 
 
 
