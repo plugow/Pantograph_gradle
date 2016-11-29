@@ -67,7 +67,7 @@ public class StartWindowController implements Initializable{
     @FXML private void simulationModeClicked(){
         Stage startWindow=(Stage) connectButton.getScene().getWindow();
         startWindow.close();
-        MainModel.getInstance().currentLabel().setText("simulation mode");
+        MainModel.getInstance().currentLabel().setText("simulation");
         MainModel.getInstance().currentStage().show();
     }
 

@@ -38,9 +38,13 @@ public class JogController implements Initializable{
 
     private int velocity;
     private int angleValue1;
+    private int angleValue11;
     private int angleValue2;
+    private int angleValue22;
     private int angleValue3;
+    private int angleValue33;
     private int angleValue4;
+    private String checkMode;
 
     //region timer an timertask declaration and implementaion
     private Timer timer = new Timer();
@@ -79,7 +83,11 @@ public class JogController implements Initializable{
         public void run() {
             System.out.println(angleValue1);
             angleValue1+=1;
-            MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue1));
+            if(checkMode.equals("simulation")){
+            if(angleValue11==angleValue1-20){
+                MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue1));
+                angleValue11=angleValue1;
+            }}
             MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
         }
     }
@@ -88,7 +96,11 @@ public class JogController implements Initializable{
         public void run() {
 
             angleValue1-=1;
-            MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue1));
+            if(checkMode.equals("simulation")){
+            if(angleValue11==angleValue1+20){
+                MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue1));
+                angleValue11=angleValue1;
+            }}
             MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
         }
     }
@@ -98,7 +110,11 @@ public class JogController implements Initializable{
         public void run() {
             System.out.println(angleValue2);
             angleValue2+=1;
-            MainModel.getInstance().currentValue2().setText(Integer.toString(angleValue2));
+            if(checkMode.equals("simulation")){
+                if(angleValue22==angleValue2-10){
+                    MainModel.getInstance().currentValue2().setText(Integer.toString(angleValue2));
+                    angleValue22=angleValue2;
+                }}
             MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);
         }
     }
@@ -107,7 +123,11 @@ public class JogController implements Initializable{
         public void run() {
 
             angleValue2-=1;
-            MainModel.getInstance().currentValue2().setText(Integer.toString(angleValue2));
+            if(checkMode.equals("simulation")){
+                if(angleValue22==angleValue2+10){
+                    MainModel.getInstance().currentValue2().setText(Integer.toString(angleValue2));
+                    angleValue22=angleValue2;
+                }}
             MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);
         }
     }
@@ -118,7 +138,11 @@ public class JogController implements Initializable{
             System.out.println(angleValue3);
             angleValue3+=1;
 
-            MainModel.getInstance().currentValue3().setText(Integer.toString(angleValue3));
+            if(checkMode.equals("simulation")){
+                if(angleValue33==angleValue3-10){
+                    MainModel.getInstance().currentValue3().setText(Integer.toString(angleValue3));
+                    angleValue33=angleValue3;
+                }}
             MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
         }
     }
@@ -127,7 +151,11 @@ public class JogController implements Initializable{
         public void run() {
 
             angleValue3-=1;
-            MainModel.getInstance().currentValue3().setText(Integer.toString(angleValue3));
+            if(checkMode.equals("simulation")){
+                if(angleValue33==angleValue3+10){
+                    MainModel.getInstance().currentValue3().setText(Integer.toString(angleValue3));
+                    angleValue33=angleValue3;
+                }}
             MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
         }
     }
@@ -195,6 +223,7 @@ public class JogController implements Initializable{
     @FXML private void firstMinusClicked(){
         System.out.println(angleValue1);
         angleValue1-=1;
+
         MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue1));
         MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,0);
 
@@ -273,10 +302,13 @@ public class JogController implements Initializable{
     // first servo
     @FXML private  void firstMinusPressed(){
         velocity=101-(int)velocitySlider.getValue();
-
+        angleValue11=angleValue1;
+        checkMode =MainModel.getInstance().currentLabel().getText();
+        System.out.println(checkMode);
         minusTask1 = new MinusTimerTask1();
         timer = new Timer();
         timer.scheduleAtFixedRate(minusTask1, 500, velocity);
+
 
     }
 
@@ -289,7 +321,8 @@ public class JogController implements Initializable{
 
     @FXML private void firstPlusPressed(){
         velocity=101-(int)velocitySlider.getValue();
-
+        angleValue11=angleValue1;
+        checkMode =MainModel.getInstance().currentLabel().getText();
         plusTask1 = new PlusTimerTask1();
         timer = new Timer();
         timer.scheduleAtFixedRate(plusTask1, 500, velocity);
@@ -307,7 +340,8 @@ public class JogController implements Initializable{
     // second servo
     @FXML private  void secondMinusPressed() {
         velocity=101-(int)velocitySlider.getValue();
-
+        checkMode =MainModel.getInstance().currentLabel().getText();
+        angleValue22=angleValue2;
         minusTask2 = new MinusTimerTask2();
         timer = new Timer();
         timer.scheduleAtFixedRate(minusTask2, 500, velocity);
@@ -323,7 +357,8 @@ public class JogController implements Initializable{
 
     @FXML private void secondPlusPressed(){
         velocity=101-(int)velocitySlider.getValue();
-
+        checkMode =MainModel.getInstance().currentLabel().getText();
+        angleValue22=angleValue2;
         plusTask2 = new PlusTimerTask2();
         timer = new Timer();
         timer.scheduleAtFixedRate(plusTask2, 500, velocity);
@@ -341,7 +376,8 @@ public class JogController implements Initializable{
     // third servo
     @FXML private  void thirdMinusPressed() {
         velocity=101-(int)velocitySlider.getValue();
-
+        checkMode =MainModel.getInstance().currentLabel().getText();
+        angleValue33=angleValue3;
         minusTask3 = new MinusTimerTask3();
         timer = new Timer();
         timer.scheduleAtFixedRate(minusTask3, 500, velocity);
@@ -357,7 +393,8 @@ public class JogController implements Initializable{
 
     @FXML private void thirdPlusPressed(){
         velocity=101-(int)velocitySlider.getValue();
-
+        checkMode =MainModel.getInstance().currentLabel().getText();
+        angleValue33=angleValue3;
         plusTask3 = new PlusTimerTask3();
         timer = new Timer();
         timer.scheduleAtFixedRate(plusTask3, 500, velocity);
