@@ -32,6 +32,16 @@ public class JogController implements Initializable{
     @FXML Slider velocitySlider;
     //endregion
 
+
+    // togglegroup for set way to move
+    final private ToggleGroup group = new ToggleGroup();
+
+    private int velocity;
+    private int angleValue1;
+    private int angleValue2;
+    private int angleValue3;
+    private int angleValue4;
+
     //region timer an timertask declaration and implementaion
     private Timer timer = new Timer();
     private TimerTask plusTask1 = new PlusTimerTask1();
@@ -40,6 +50,29 @@ public class JogController implements Initializable{
     private TimerTask minusTask2 = new MinusTimerTask2();
     private TimerTask plusTask3 = new PlusTimerTask3();
     private TimerTask minusTask3 = new MinusTimerTask3();
+
+    // initialize method
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        angleValue1=90;
+        angleValue2=90;
+        angleValue3=90;
+        angleValue4=90;
+
+        jogRadio.setToggleGroup(group);
+        jogRadio.setSelected(true);
+        cartesianRadio.setToggleGroup(group);
+        xMinus.setDisable(true);
+        xPlus.setDisable(true);
+        yMinus.setDisable(true);
+        yPlus.setDisable(true);
+        zMinus.setDisable(true);
+        zPlus.setDisable(true);
+        velocitySlider.valueProperty().addListener((obs, oldval, newVal) ->
+                velocitySlider.setValue(newVal.intValue()));
+
+
+    }
 
     private class PlusTimerTask1 extends TimerTask {
 
@@ -53,7 +86,7 @@ public class JogController implements Initializable{
 
     private class MinusTimerTask1 extends TimerTask {
         public void run() {
-            velocity=(int)velocitySlider.getValue()*255/100;
+
             angleValue1-=1;
             MainModel.getInstance().currentValue1().setText(Integer.toString(angleValue1));
             MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
@@ -72,7 +105,7 @@ public class JogController implements Initializable{
 
     private class MinusTimerTask2 extends TimerTask {
         public void run() {
-            velocity=(int)velocitySlider.getValue()*255/100;
+
             angleValue2-=1;
             MainModel.getInstance().currentValue2().setText(Integer.toString(angleValue2));
             MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);
@@ -84,6 +117,7 @@ public class JogController implements Initializable{
         public void run() {
             System.out.println(angleValue3);
             angleValue3+=1;
+
             MainModel.getInstance().currentValue3().setText(Integer.toString(angleValue3));
             MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
         }
@@ -91,7 +125,7 @@ public class JogController implements Initializable{
 
     private class MinusTimerTask3 extends TimerTask {
         public void run() {
-            velocity=(int)velocitySlider.getValue()*255/100;
+
             angleValue3-=1;
             MainModel.getInstance().currentValue3().setText(Integer.toString(angleValue3));
             MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
@@ -99,36 +133,6 @@ public class JogController implements Initializable{
     }
 
     //endregion
-
-    // togglegroup for set way to move
-    final ToggleGroup group = new ToggleGroup();
-
-    private int velocity;
-    private int angleValue1=90;
-    private int angleValue2=90;
-    private int angleValue3=90;
-    private int angleValue4=90;
-
-
-
-
-    // initialize method
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        jogRadio.setToggleGroup(group);
-        jogRadio.setSelected(true);
-        cartesianRadio.setToggleGroup(group);
-        xMinus.setDisable(true);
-        xPlus.setDisable(true);
-        yMinus.setDisable(true);
-        yPlus.setDisable(true);
-        zMinus.setDisable(true);
-        zPlus.setDisable(true);
-        velocitySlider.valueProperty().addListener((obs, oldval, newVal) ->
-                velocitySlider.setValue(newVal.intValue()));
-
-
-    }
 
 
     // select way to move
@@ -224,12 +228,15 @@ public class JogController implements Initializable{
         System.out.println(angleValue3);
         angleValue3-=1;
         MainModel.getInstance().currentValue3().setText(Integer.toString(angleValue3));
+
+
         MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,0);
 
     }
     @FXML private void thirdPlusClicked(){
         angleValue3+=1;
         System.out.println(angleValue3);
+
         MainModel.getInstance().currentValue3().setText(Integer.toString(angleValue3));
         MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,0);
 
@@ -266,7 +273,7 @@ public class JogController implements Initializable{
     // first servo
     @FXML private  void firstMinusPressed(){
         velocity=101-(int)velocitySlider.getValue();
-        System.out.println(angleValue1);
+
         minusTask1 = new MinusTimerTask1();
         timer = new Timer();
         timer.scheduleAtFixedRate(minusTask1, 500, velocity);
@@ -282,7 +289,7 @@ public class JogController implements Initializable{
 
     @FXML private void firstPlusPressed(){
         velocity=101-(int)velocitySlider.getValue();
-        System.out.println(angleValue1);
+
         plusTask1 = new PlusTimerTask1();
         timer = new Timer();
         timer.scheduleAtFixedRate(plusTask1, 500, velocity);
@@ -300,7 +307,7 @@ public class JogController implements Initializable{
     // second servo
     @FXML private  void secondMinusPressed() {
         velocity=101-(int)velocitySlider.getValue();
-        System.out.println(angleValue2);
+
         minusTask2 = new MinusTimerTask2();
         timer = new Timer();
         timer.scheduleAtFixedRate(minusTask2, 500, velocity);
@@ -316,7 +323,7 @@ public class JogController implements Initializable{
 
     @FXML private void secondPlusPressed(){
         velocity=101-(int)velocitySlider.getValue();
-        System.out.println(angleValue2);
+
         plusTask2 = new PlusTimerTask2();
         timer = new Timer();
         timer.scheduleAtFixedRate(plusTask2, 500, velocity);
@@ -334,7 +341,7 @@ public class JogController implements Initializable{
     // third servo
     @FXML private  void thirdMinusPressed() {
         velocity=101-(int)velocitySlider.getValue();
-        System.out.println(angleValue3);
+
         minusTask3 = new MinusTimerTask3();
         timer = new Timer();
         timer.scheduleAtFixedRate(minusTask3, 500, velocity);
@@ -350,7 +357,7 @@ public class JogController implements Initializable{
 
     @FXML private void thirdPlusPressed(){
         velocity=101-(int)velocitySlider.getValue();
-        System.out.println(angleValue3);
+
         plusTask3 = new PlusTimerTask3();
         timer = new Timer();
         timer.scheduleAtFixedRate(plusTask3, 500, velocity);

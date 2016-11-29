@@ -1,7 +1,6 @@
 package controllerPackage;
 
 
-import javafx.application.Platform;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +19,7 @@ import mainPackage.MainModel;
 import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class MainWindowController implements Initializable{
     private int power=IProtocol.LOW;
@@ -28,37 +28,54 @@ public class MainWindowController implements Initializable{
     @FXML Label informationBar;
     @FXML Button ledOn;
     @FXML Pane pane;
-    double[] point1={50,50,50};
-    double pi=Math.PI;
-    Plot3DPanel plot3=new Plot3DPanel();
-    ForwardKin forwardKin=new ForwardKin();
-    double[][] results=new double[4][3];
-    double[] x = new double[5];
-    double[] y = new double[5];
-    double[] z = new double[5];
-    double alfa1=pi/2;
-    double alfa2=pi/2;
-    double alfa3=pi/2;
+
+    private float pi=(float)Math.PI;
+    private Plot3DPanel plot3=new Plot3DPanel();
+    private ForwardKin forwardKin=new ForwardKin();
+    private float[][] results=new float[4][3];
+    private double[] x = new double[5];
+    private double[] y = new double[5];
+    private double[] z = new double[5];
+    private float alfa1=pi/2;
+    private float alfa2=pi/2;
+    private float alfa3=pi/2;
+    ReentrantLock lock = new ReentrantLock();
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         MainModel.getInstance().currentLabel().textProperty().addListener((observable, oldValue, newValue) -> informationBar.setText(newValue));
         MainModel.getInstance().currentValue1().textProperty().addListener((observable, oldValue, newValue) -> {
-            alfa1=Math.toRadians(Integer.parseInt(newValue));
-            setForwardKin(alfa1,alfa2,alfa3);
+            lock.lock();
+            try {
+                alfa1=(float)Math.toRadians(Integer.parseInt(newValue));
+                setForwardKin(alfa1,alfa2,alfa3);
+            } finally {
+                lock.unlock();
+            }
 
         });
 
         MainModel.getInstance().currentValue2().textProperty().addListener((observable, oldValue, newValue) -> {
-            alfa2=Math.toRadians(Integer.parseInt(newValue));
-            setForwardKin(alfa1,alfa2,alfa3);
+            lock.lock();
+            try {
+                alfa2=(float)Math.toRadians(Integer.parseInt(newValue));
+                setForwardKin(alfa1,alfa2,alfa3);
+            } finally {
+                lock.unlock();
+            }
 
         });
 
         MainModel.getInstance().currentValue3().textProperty().addListener((observable, oldValue, newValue) -> {
-            alfa3=Math.toRadians(Integer.parseInt(newValue));
-            setForwardKin(alfa1,alfa2,alfa3);
+            lock.lock();
+            try {
+                alfa3=(float)Math.toRadians(Integer.parseInt(newValue));
+                setForwardKin(alfa1,alfa2,alfa3);
+            } finally {
+                lock.unlock();
+            }
+
 
         });
 
@@ -77,6 +94,7 @@ public class MainWindowController implements Initializable{
     @FXML private void ledOnClicked() {
 
         power = IProtocol.HIGH;
+        MainModel.getInstance().currentLink().sendPowerPinSwitch(3,power);
 
 
     }
@@ -103,7 +121,7 @@ public class MainWindowController implements Initializable{
     }
 
 
-    public void setForwardKin(double theta1, double theta2, double theta3){
+    public void setForwardKin(float theta1, float theta2, float theta3){
         results=forwardKin.forward(theta1,theta2,theta3);
         x[1]=results[0][0];
         y[1]=results[0][1];
@@ -123,7 +141,7 @@ public class MainWindowController implements Initializable{
 
         plot3=new Plot3DPanel();
 
-        plot3.addLinePlot("plot", Color.BLACK,x,y,z);
+        plot3.addLinePlot("plot", Color.BLACK, x, y,z);
         plot3.addScatterPlot("plot2",Color.BLUE,x,y,z);
         plot3.setFixedBounds(0,-900,900);
         plot3.setFixedBounds(1,-900,900);

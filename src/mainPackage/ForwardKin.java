@@ -5,27 +5,27 @@ public class ForwardKin {
 
     public ForwardKin(){}
 
-    double [][] P1=new double[4][1];
-    double [][] P01=new double[4][1];
-    double [][] P02=new double[4][1];
-    double [][] P03=new double[4][1];
-    double [][] P04=new double[4][1];
+    private float [][] P1=new float[4][1];
+    private float [][] P01=new float[4][1];
+    private float [][] P02=new float[4][1];
+    private float [][] P03=new float[4][1];
+    private float [][] P04=new float[4][1];
 
 
-    public double[][] forward(double theta1,double theta2,double theta3){
+    public float[][] forward(float theta1,float theta2,float theta3){
         P1 [3][0]=1;
-        double[][] xyzValue=new double[4][3];
-        double[] alfa={Math.PI/2, 0, 0, Math.PI/2, 0};
-        double[] a={0, 450, 350, 0, 0};
-        double[] d={200, 0, 0, 0, 137};
-        double[] theta={theta1, theta2, theta3, -(theta3+theta2), 0};
-        double[][] t=(new MatrixHelper()).getIdentity(4);
+        float[][] xyzValue=new float[4][3];
+        float[] alfa={(float)Math.PI/2, 0, 0, (float)Math.PI/2, 0};
+        float[] a={0, 450, 350, 0, 0};
+        float[] d={200, 0, 0, 0, 137};
+        float[] theta={theta1, theta2, theta3, -(theta3+theta2), 0};
+        float[][] t=(new MatrixHelper()).getIdentity(4);
 
         int MAX_LEVELS=6;
         int MAP_WIDTH=4;
         int MAP_HEIGHT=4;
 
-        double [][][] tt = new double[MAX_LEVELS][MAP_WIDTH][MAP_HEIGHT];
+        float [][][] tt = new float[MAX_LEVELS][MAP_WIDTH][MAP_HEIGHT];
         for (int currentLevel = 0; currentLevel < MAX_LEVELS; currentLevel++) {
             for (int x = 0; x < MAP_WIDTH; x++) {
                 for (int y = 0; y < MAP_HEIGHT; y++) {
@@ -37,11 +37,11 @@ public class ForwardKin {
 
 
         for (int kk=0;kk<5;kk++) {
-            double cA = Math.cos(alfa[kk]);
-            double sA = Math.sin(alfa[kk]);
-            double cT = Math.cos(theta[kk]);
-            double sT = Math.sin(theta[kk]);
-            double [][] bigT ={{cT, -cA*sT, sA*sT, a[kk]*cT},
+            float cA = (float)Math.cos(alfa[kk]);
+            float sA = (float)Math.sin(alfa[kk]);
+            float cT = (float)Math.cos(theta[kk]);
+            float sT = (float)Math.sin(theta[kk]);
+            float [][] bigT ={{cT, -cA*sT, sA*sT, a[kk]*cT},
                     {sT, cA*cT, -cT*sA, a[kk]*sT},
                     {0, sA, cA, d[kk]},
                     {0, 0, 0, 1}};
@@ -85,22 +85,22 @@ public class ForwardKin {
         return xyzValue;
     }
 
-    public static double[][] multMatrix(double a[][], double b[][]){//a[m][n], b[n][p]
+    public static float[][] multMatrix(float a[][], float b[][]){//a[m][n], b[n][p]
 
-        if(a.length == 0) return new double[0][0];
-        if(a[0].length != b.length) return null; //invalid dims
+        if(a.length == 0) return new float[0][0];
+        //if(a[0].length != b.length) return new float[0][0]; //invalid dims
 
 
         int n = a[0].length;
         int m = a.length;
         int p = b[0].length;
-        double ans[][] = new double[m][p];
+        float ans[][] = new float[m][p];
 
         for(int i = 0;i < m;i++){
             for(int j = 0;j < p;j++){
                 for(int k = 0;k < n;k++){
                     ans[i][j] += a[i][k] * b[k][j];
-                    if((ans[i][j]<0 && ans[i][j]>-0.001)|| (ans[i][j]>0 && ans[i][j]<0.001)) ans[i][j]=0;
+                    if(ans[i][j]>-0.01 && ans[i][j]<0.01 ) ans[i][j]=0;
                 }
             }
         }
@@ -108,10 +108,10 @@ public class ForwardKin {
     }
 
 
-    public class MatrixHelper {
+    private class MatrixHelper {
 
-        public double[][] getIdentity(int size) {
-            double[][] matrix = new double[size][size];
+        public float[][] getIdentity(int size) {
+            float[][] matrix = new float[size][size];
             for(int ii = 0; ii < size; ii++) matrix[ii][ii] = 1;
             return matrix;
         }
