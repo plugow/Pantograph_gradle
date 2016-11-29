@@ -24,22 +24,22 @@ import java.util.concurrent.locks.ReentrantLock;
 public class MainWindowController implements Initializable{
     private int power=IProtocol.LOW;
     private Stage jogWindow=new Stage();
-    SwingNode swingNode = new SwingNode();
+    private SwingNode swingNode = new SwingNode();
     @FXML Label informationBar;
     @FXML Button ledOn;
     @FXML Pane pane;
 
     private float pi=(float)Math.PI;
-    private Plot3DPanel plot3=new Plot3DPanel();
+    //private Plot3DPanel plot3=new Plot3DPanel();
     private ForwardKin forwardKin=new ForwardKin();
-    private float[][] results=new float[4][3];
+    //private float[][] results=new float[4][3];
     private double[] x = new double[5];
     private double[] y = new double[5];
     private double[] z = new double[5];
     private float alfa1=pi/2;
     private float alfa2=pi/2;
     private float alfa3=pi/2;
-    ReentrantLock lock = new ReentrantLock();
+    private ReentrantLock lock = new ReentrantLock();
 
 
     @Override
@@ -121,7 +121,8 @@ public class MainWindowController implements Initializable{
     }
 
 
-    public void setForwardKin(float theta1, float theta2, float theta3){
+    private void setForwardKin(float theta1, float theta2, float theta3){
+        float[][] results;
         results=forwardKin.forward(theta1,theta2,theta3);
         x[1]=results[0][0];
         y[1]=results[0][1];
@@ -139,7 +140,7 @@ public class MainWindowController implements Initializable{
         y[4]=results[3][1];
         z[4]=results[3][2];
 
-        plot3=new Plot3DPanel();
+        Plot3DPanel plot3=new Plot3DPanel();
 
         plot3.addLinePlot("plot", Color.BLACK, x, y,z);
         plot3.addScatterPlot("plot2",Color.BLUE,x,y,z);

@@ -16,7 +16,7 @@ public class MainModel {
         return label;
     }
 
-    public Link link=Link.getDefaultInstance();
+    private Link link=Link.getDefaultInstance();
     public Link currentLink() {
         return link;
     }
@@ -26,13 +26,13 @@ public class MainModel {
         return stage;
     }
 
-    public Label value1=new Label("1");
+    private Label value1=new Label("1");
     public Label currentValue1(){return value1;}
 
-    public Label value2=new Label("2");
+    private Label value2=new Label("2");
     public Label currentValue2(){return value2;}
 
-    public Label value3=new Label("3");
+    private Label value3=new Label("3");
     public Label currentValue3(){return value3;}
 
 

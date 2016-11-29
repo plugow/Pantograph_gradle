@@ -1,35 +1,30 @@
 package controllerPackage;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import mainPackage.MainModel;
 import org.zu.ardulink.Link;
-
-import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
+
 import static javafx.application.Platform.exit;
 
 
-public class StartWindowController {
+public class StartWindowController implements Initializable{
 
     private Link link= MainModel.getInstance().currentLink();
-    private List<String> portList;
     @FXML public Label label;
     @FXML private Button connectButton;
 
-
-
-
-    @FXML public void initialize() throws IOException {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         System.out.println("włączanie");
-
-
     }
+
 
     @FXML private void checkButtonClicked(){
         System.out.println("wyjdx");
@@ -38,6 +33,7 @@ public class StartWindowController {
 
     @FXML private void connectButtonClicked(){
         System.out.println("connect");
+        List<String> portList;
         try {
 
             portList = link.getPortList();
@@ -74,8 +70,6 @@ public class StartWindowController {
         MainModel.getInstance().currentLabel().setText("simulation mode");
         MainModel.getInstance().currentStage().show();
     }
-
-
 
 
 

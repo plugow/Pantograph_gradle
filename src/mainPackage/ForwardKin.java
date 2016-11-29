@@ -6,14 +6,15 @@ public class ForwardKin {
     public ForwardKin(){}
 
     private float [][] P1=new float[4][1];
-    private float [][] P01=new float[4][1];
-    private float [][] P02=new float[4][1];
-    private float [][] P03=new float[4][1];
-    private float [][] P04=new float[4][1];
+
 
 
     public float[][] forward(float theta1,float theta2,float theta3){
         P1 [3][0]=1;
+        float [][] P01;
+        float [][] P02;
+        float [][] P03;
+        float [][] P04;
         float[][] xyzValue=new float[4][3];
         float[] alfa={(float)Math.PI/2, 0, 0, (float)Math.PI/2, 0};
         float[] a={0, 450, 350, 0, 0};
@@ -30,6 +31,7 @@ public class ForwardKin {
             for (int x = 0; x < MAP_WIDTH; x++) {
                 for (int y = 0; y < MAP_HEIGHT; y++) {
                     tt[currentLevel][x][y] = t[x][y];
+
                 }
             }
         }
@@ -85,7 +87,7 @@ public class ForwardKin {
         return xyzValue;
     }
 
-    public static float[][] multMatrix(float a[][], float b[][]){//a[m][n], b[n][p]
+    private static float[][] multMatrix(float a[][], float b[][]){//a[m][n], b[n][p]
 
         if(a.length == 0) return new float[0][0];
         //if(a[0].length != b.length) return new float[0][0]; //invalid dims
@@ -110,7 +112,7 @@ public class ForwardKin {
 
     private class MatrixHelper {
 
-        public float[][] getIdentity(int size) {
+        private float[][] getIdentity(int size) {
             float[][] matrix = new float[size][size];
             for(int ii = 0; ii < size; ii++) matrix[ii][ii] = 1;
             return matrix;
