@@ -27,7 +27,7 @@ public class StartWindowController implements Initializable{
 
 
     @FXML private void checkButtonClicked(){
-        System.out.println("wyjdx");
+        System.out.println("wyjdź");
         exit();
     }
 
