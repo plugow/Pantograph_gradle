@@ -1,0 +1,36 @@
+apply plugin: 'idea'
+apply plugin: 'java'
+
+apply plugin: 'maven'
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven {
+        url("https://plugins.gradle.org/m2/")
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    // jmathio
+
+    compile group: 'com.github.yannrichet', name:'JMathIO', version:'1.0'
+    compile group: 'com.github.yannrichet', name:'JMathPlot', version:'1.0.1'
+
+
+    // https://mvnrepository.com/artifact/org.rxtx/rxtx
+    compile group: 'org.rxtx', name: 'rxtx', version: '2.1.7'
+
+    compile files('./src/main/resources/ardulink-core-0.6.1.jar')
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.22'
+
+
+
+
+
+
+}
