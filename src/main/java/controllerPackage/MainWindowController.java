@@ -26,7 +26,6 @@ public class MainWindowController implements Initializable{
     private Stage jogWindow=new Stage();
     private SwingNode swingNode = new SwingNode();
     @FXML Label informationBar;
-    @FXML Button ledOn;
     @FXML Pane pane;
 
     private float pi=(float)Math.PI;
