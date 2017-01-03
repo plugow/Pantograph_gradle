@@ -33,9 +33,9 @@ public class MainWindowController implements Initializable{
     private double[] x = new double[5];
     private double[] y = new double[5];
     private double[] z = new double[5];
-    private float alfa1=pi/2;
-    private float alfa2=pi/2;
-    private float alfa3=pi/2;
+    private float alfa1=0;
+    private float alfa2=(float)Math.PI/2;
+    private float alfa3=-(float)Math.PI/2;
     private int effector;
 
 
@@ -108,9 +108,9 @@ public class MainWindowController implements Initializable{
         plot3.addScatterPlot("plot2",Color.BLUE,x,y,z);
         if (eff==118) plot3.getPlot(1).setColor(Color.RED);
         else plot3.getPlot(1).setColor(Color.BLUE);
-        plot3.setFixedBounds(0,-900,900);
-        plot3.setFixedBounds(1,-900,900);
-        plot3.setFixedBounds(2,0,1000);
+        plot3.setFixedBounds(0,-50,250);
+        plot3.setFixedBounds(1,-300,300);
+        plot3.setFixedBounds(2,0,300);
         plot3.setPreferredSize(new Dimension(500,500));
 
 

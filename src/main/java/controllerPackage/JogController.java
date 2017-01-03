@@ -64,9 +64,9 @@ public class JogController implements Initializable{
     // initialize method
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        angleValue1=90;
+        angleValue1=0;
         angleValue2=90;
-        angleValue3=90;
+        angleValue3=-90;
         angleValue4=90;
 
 
@@ -368,13 +368,13 @@ public class JogController implements Initializable{
         MainModel.getInstance().currentLink().sendToneMessage(2,90,200);
         MainModel.getInstance().currentLink().sendToneMessage(3,90,200);
         //MainModel.getInstance().currentLink().sendToneMessage(4,90,200);
-        angleValue1=90;
+        angleValue1=0;
         angleValue2=90;
-        angleValue3=90;
+        angleValue3=-90;
         //angleValue4=90;
-        xValue= 0;
-        yValue= -350;
-        zValue= 513;
+        xValue= 128;
+        yValue= 0;
+        zValue= 148;
         MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
 
 

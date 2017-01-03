@@ -21,6 +21,8 @@
     <bytecodeTargetLevel>
       <module name="Pantograph3_main" target="1.8" />
       <module name="Pantograph3_test" target="1.8" />
+      <module name="PantographTheNew_main" target="1.8" />
+      <module name="PantographTheNew_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
