@@ -33,9 +33,9 @@ public class MainWindowController implements Initializable{
     private double[] x = new double[5];
     private double[] y = new double[5];
     private double[] z = new double[5];
-    private float alfa1=0;
-    private float alfa2=(float)Math.PI/2;
-    private float alfa3=-(float)Math.PI/2;
+    private float alfa1=pi/2;
+    private float alfa2=pi/2;
+    private float alfa3=pi/2;
     private int effector;
 
 

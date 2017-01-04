@@ -40,7 +40,7 @@ public class StartWindowController implements Initializable{
             if(portList != null && portList.size() > 0) {
                 String port = portList.get(0);
                 label.setText("dostepny port: "+port);
-                boolean connected = link.connect(port);
+                boolean connected = link.connect(port,9600);
                 System.out.println("Connected:" + connected);
                 System.out.println(link.isConnected());
 
