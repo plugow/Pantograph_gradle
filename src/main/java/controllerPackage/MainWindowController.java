@@ -35,7 +35,7 @@ public class MainWindowController implements Initializable{
     private double[] z = new double[5];
     private float alfa1=pi/2;
     private float alfa2=pi/2;
-    private float alfa3=pi/2;
+    private float alfa3=-pi/2;
     private int effector;
 
 
@@ -104,8 +104,8 @@ public class MainWindowController implements Initializable{
 
         Plot3DPanel plot3=new Plot3DPanel();
 
-        plot3.addLinePlot("plot", Color.BLACK, x, y,z);
-        plot3.addScatterPlot("plot2",Color.BLUE,x,y,z);
+        plot3.addLinePlot("plot", Color.BLACK, y,x,z);     //zmienione x-y żeby ze schematem kinematycznym się zgadzało :P
+        plot3.addScatterPlot("plot2",Color.BLUE,y,x,z);
         if (eff==118) plot3.getPlot(1).setColor(Color.RED);
         else plot3.getPlot(1).setColor(Color.BLUE);
         plot3.setFixedBounds(0,-50,250);
@@ -123,7 +123,7 @@ public class MainWindowController implements Initializable{
         //System.out.println(list.get(0)+ list.get(1) +list.get(2));
         alfa1=(float)Math.toRadians(list.get(0));
         alfa2=(float)Math.toRadians(list.get(1));
-        alfa3=(float)Math.toRadians(list.get(2));
+        alfa3=-(float)Math.toRadians(list.get(2));
         effector=list.get(3);
         setForwardKin(alfa1,alfa2,alfa3,effector);
 

@@ -16,13 +16,13 @@ public class ForwardKin {
         float [][] P03;
         float [][] P04;
         float[][] xyzValue=new float[4][3];
-        float[] alfa={(float)Math.PI/2, 0, 0, 0, (float)Math.PI/2};
-        float[] a={0, 84, 83, 45, 0};
-        float[] d={64, 0, 0, 0, 0};
-        float[] theta={theta1, theta2, theta3, -(theta3+theta2), (float)Math.PI/2};
+        float[] alfa={(float)Math.PI/2, 0, 0, 0};
+        float[] a={0, 84, 83, 45};
+        float[] d={64, 0, 0, 0};
+        float[] theta={theta1, theta2, theta3, -(theta3+theta2)};
         float[][] t=(new MatrixHelper()).getIdentity(4);
 
-        int MAX_LEVELS=6;
+        int MAX_LEVELS=5;
         int MAP_WIDTH=4;
         int MAP_HEIGHT=4;
 
@@ -39,7 +39,7 @@ public class ForwardKin {
 
 
 
-        for (int kk=0;kk<5;kk++) {
+        for (int kk=0;kk<4;kk++) {
             float cA = (float)Math.cos(alfa[kk]);
             float sA = (float)Math.sin(alfa[kk]);
             float cT = (float)Math.cos(theta[kk]);
@@ -52,7 +52,7 @@ public class ForwardKin {
             tt[kk+1]=multMatrix(tt[kk],bigT);
         }
 
-        P04=multMatrix(tt[5],P1);
+        P04=multMatrix(tt[4],P1);
         P03=multMatrix(tt[3],P1);
         P02=multMatrix(tt[2],P1);
         P01=multMatrix(tt[1],P1);

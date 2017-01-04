@@ -201,7 +201,7 @@ public class JogController implements Initializable{
             thetaValue=InversKin.inverse(xValue,yValue,zValue);
             angleValue1=(int) Math.round(Math.toDegrees(thetaValue[0]));
             angleValue2=(int) Math.round(Math.toDegrees(thetaValue[1]));
-            angleValue3=(int) Math.round(Math.toDegrees(thetaValue[2]));
+            angleValue3=-(int) Math.round(Math.toDegrees(thetaValue[2]));
             if(MainModel.getInstance().isCheckMode()){
                 if(xxValue==xValue-step){
                     MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
@@ -221,7 +221,7 @@ public class JogController implements Initializable{
             thetaValue=InversKin.inverse(xValue,yValue,zValue);
             angleValue1=(int) Math.round(Math.toDegrees(thetaValue[0]));
             angleValue2=(int) Math.round(Math.toDegrees(thetaValue[1]));
-            angleValue3=(int) Math.round(Math.toDegrees(thetaValue[2]));
+            angleValue3=-(int) Math.round(Math.toDegrees(thetaValue[2]));
             if(MainModel.getInstance().isCheckMode()){
                 if(xxValue==xValue+step){
                     MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
@@ -243,7 +243,7 @@ public class JogController implements Initializable{
             thetaValue=InversKin.inverse(xValue,yValue,zValue);
             angleValue1=(int) Math.round(Math.toDegrees(thetaValue[0]));
             angleValue2=(int) Math.round(Math.toDegrees(thetaValue[1]));
-            angleValue3=(int) Math.round(Math.toDegrees(thetaValue[2]));
+            angleValue3=-(int) Math.round(Math.toDegrees(thetaValue[2]));
             if(MainModel.getInstance().isCheckMode()){
                 if(yyValue==yValue-step){
                     MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
@@ -263,7 +263,7 @@ public class JogController implements Initializable{
             thetaValue=InversKin.inverse(xValue,yValue,zValue);
             angleValue1=(int) Math.round(Math.toDegrees(thetaValue[0]));
             angleValue2=(int) Math.round(Math.toDegrees(thetaValue[1]));
-            angleValue3=(int) Math.round(Math.toDegrees(thetaValue[2]));
+            angleValue3=-(int) Math.round(Math.toDegrees(thetaValue[2]));
             if(MainModel.getInstance().isCheckMode()){
                 if(yyValue==yValue+step){
                     MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
@@ -284,7 +284,7 @@ public class JogController implements Initializable{
             thetaValue=InversKin.inverse(xValue,yValue,zValue);
             angleValue1=(int) Math.round(Math.toDegrees(thetaValue[0]));
             angleValue2=(int) Math.round(Math.toDegrees(thetaValue[1]));
-            angleValue3=(int) Math.round(Math.toDegrees(thetaValue[2]));
+            angleValue3=-(int) Math.round(Math.toDegrees(thetaValue[2]));
             if(MainModel.getInstance().isCheckMode()){
                 if(zzValue==zValue-step){
                     MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
@@ -304,7 +304,7 @@ public class JogController implements Initializable{
             thetaValue=InversKin.inverse(xValue,yValue,zValue);
             angleValue1=(int) Math.round(Math.toDegrees(thetaValue[0]));
             angleValue2=(int) Math.round(Math.toDegrees(thetaValue[1]));
-            angleValue3=(int) Math.round(Math.toDegrees(thetaValue[2]));
+            angleValue3=-(int) Math.round(Math.toDegrees(thetaValue[2]));
             if(MainModel.getInstance().isCheckMode()){
                 if(zzValue==zValue+step){
                     MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
@@ -355,10 +355,13 @@ public class JogController implements Initializable{
         zMinus.setDisable(false);
         zPlus.setDisable(false);
         float[][] results;
-        results=forwardKin.forward((float) Math.toRadians(angleValue1),(float) Math.toRadians(angleValue2),(float) Math.toRadians(angleValue3));
+        results=forwardKin.forward((float) Math.toRadians(angleValue1),(float) Math.toRadians(angleValue2),-(float) Math.toRadians(angleValue3));
         xValue= (int) results[3][0];
         yValue= (int) results[3][1];
         zValue= (int) results[3][2];
+//        System.out.println(xValue);
+//        System.out.println(yValue);
+//        System.out.println(zValue);
 
     }
 
@@ -372,8 +375,8 @@ public class JogController implements Initializable{
         angleValue2=90;
         angleValue3=90;
         //angleValue4=90;
-        xValue= 128;
-        yValue= 0;
+        xValue= 0;
+        yValue= 128;
         zValue= 148;
         MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
 
@@ -755,7 +758,7 @@ public class JogController implements Initializable{
         thetaValue=InversKin.inverse(xValue,yValue,zValue);
         angleValue1=(int) Math.round(Math.toDegrees(thetaValue[0]));
         angleValue2=(int) Math.round(Math.toDegrees(thetaValue[1]));
-        angleValue3=(int) Math.round(Math.toDegrees(thetaValue[2]));
+        angleValue3=-(int) Math.round(Math.toDegrees(thetaValue[2]));
         System.out.println(angleValue1);
         System.out.println(angleValue2);
         System.out.println(angleValue3);
