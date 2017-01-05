@@ -208,7 +208,7 @@ public class JogController implements Initializable{
                     xxValue=xValue;
                 }}
             MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
-            MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);
+            MainModel.getInstance().currentLink().sendToneMessage(2,180-angleValue2,255);
             MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
         }
     }
@@ -228,7 +228,7 @@ public class JogController implements Initializable{
                     xxValue=xValue;
                 }}
             MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
-            MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);
+            MainModel.getInstance().currentLink().sendToneMessage(2,180-angleValue2,255);
             MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
         }
     }
@@ -250,7 +250,7 @@ public class JogController implements Initializable{
                     yyValue=yValue;
                 }}
             MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
-            MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);
+            MainModel.getInstance().currentLink().sendToneMessage(2,180-angleValue2,255);
             MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
         }
     }
@@ -270,7 +270,7 @@ public class JogController implements Initializable{
                     yyValue=yValue;
                 }}
             MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
-            MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);
+            MainModel.getInstance().currentLink().sendToneMessage(2,180-angleValue2,255);
             MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
         }
     }
@@ -291,7 +291,7 @@ public class JogController implements Initializable{
                     zzValue=zValue;
                 }}
             MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
-            MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);
+            MainModel.getInstance().currentLink().sendToneMessage(2,180-angleValue2,255);
             MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
         }
     }
@@ -311,7 +311,7 @@ public class JogController implements Initializable{
                     zzValue=zValue;
                 }}
             MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
-            MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);
+            MainModel.getInstance().currentLink().sendToneMessage(2,180-angleValue2,255);
             MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
         }
     }
@@ -764,7 +764,7 @@ public class JogController implements Initializable{
         System.out.println(angleValue3);
 
         MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
-        MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);
+        MainModel.getInstance().currentLink().sendToneMessage(2,180-angleValue2,255);
         MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
 
         MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
