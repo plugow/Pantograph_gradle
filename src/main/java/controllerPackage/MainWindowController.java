@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import mainPackage.ForwardKin;
@@ -27,6 +28,8 @@ public class MainWindowController implements Initializable{
     private SwingNode swingNode = new SwingNode();
     @FXML Label informationBar;
     @FXML Pane pane;
+    @FXML  private TextArea codeArea;
+    @FXML Button compiledButton;
 
     private float pi=(float)Math.PI;
     private ForwardKin forwardKin=new ForwardKin();
@@ -73,7 +76,7 @@ public class MainWindowController implements Initializable{
     @FXML private void jogOperationClicked() throws Exception {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("jogWindowStyle.fxml"));
         jogWindow.setTitle("Pantograph");
-        jogWindow.setScene(new Scene(root, 400, 400));
+        jogWindow.setScene(new Scene(root, 380, 260));
         jogWindow.getIcons().add(new javafx.scene.image.Image("manipulator_logo.png"));
         jogWindow.show();
 
@@ -128,6 +131,24 @@ public class MainWindowController implements Initializable{
         setForwardKin(alfa1,alfa2,alfa3,effector);
 
 
+
+    }
+
+
+
+    @FXML private void compiledButtonClicked(){
+        String str=codeArea.getText();
+        String temp=new String();
+        ArrayList<String> commandList=new ArrayList<>();
+
+        StringTokenizer stringTokenizer=new StringTokenizer(str," ");
+        while (stringTokenizer.hasMoreTokens()){
+            temp=stringTokenizer.nextToken();
+            commandList.add(temp);
+            System.out.println(temp);
+        }
+
+        System.out.println(commandList.get(0));
 
     }
 
