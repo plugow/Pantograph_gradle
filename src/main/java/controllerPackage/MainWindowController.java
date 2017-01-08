@@ -8,12 +8,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import mainPackage.Compiler;
 import mainPackage.ForwardKin;
+import mainPackage.Points;
 import org.math.plot.Plot3DPanel;
 import mainPackage.MainModel;
 
@@ -30,6 +33,9 @@ public class MainWindowController implements Initializable{
     @FXML Pane pane;
     @FXML  private TextArea codeArea;
     @FXML Button compiledButton;
+    @FXML TableView<Points> savedTableView;
+    @FXML TableColumn<Points,String> nameColumn;
+    @FXML TableColumn<Points,String> coordinatesColumn;
 
     private float pi=(float)Math.PI;
     private ForwardKin forwardKin=new ForwardKin();
@@ -58,6 +64,14 @@ public class MainWindowController implements Initializable{
         );
 
 
+        nameColumn.setCellValueFactory(cellData-> cellData.getValue().mNameProperty());
+        coordinatesColumn.setCellValueFactory(cellData->cellData.getValue().mCoordinatesProperty());
+        savedTableView.setItems(MainModel.getInstance().getPointsList());
+
+
+
+
+
 
 
         setForwardKin(alfa1,alfa2,alfa3,effector);
@@ -76,7 +90,7 @@ public class MainWindowController implements Initializable{
     @FXML private void jogOperationClicked() throws Exception {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("jogWindowStyle.fxml"));
         jogWindow.setTitle("Pantograph");
-        jogWindow.setScene(new Scene(root, 380, 260));
+        jogWindow.setScene(new Scene(root, 380, 280));
         jogWindow.getIcons().add(new javafx.scene.image.Image("manipulator_logo.png"));
         jogWindow.show();
 
@@ -138,20 +152,36 @@ public class MainWindowController implements Initializable{
 
     @FXML private void compiledButtonClicked(){
         String str=codeArea.getText();
-        String temp=new String();
+        String temp;
         ArrayList<String> commandList=new ArrayList<>();
 
-        StringTokenizer stringTokenizer=new StringTokenizer(str," ");
+
+        StringTokenizer stringTokenizer=new StringTokenizer(str," ,\n");
         while (stringTokenizer.hasMoreTokens()){
             temp=stringTokenizer.nextToken();
             commandList.add(temp);
             System.out.println(temp);
         }
 
-        System.out.println(commandList.get(0));
+//        System.out.println(commandList.size());
+//        System.out.println(commandList.get(3));
+
+        Compiler compiler=new Compiler();
+        compiler.compile(commandList);
 
     }
 
+
+    private void addPoint(List<Integer> list){
+        float[][] results;
+        results=forwardKin.forward(list.get(0),list.get(1),list.get(2));
+
+
+    }
+
+    @FXML private void clearButtonClicked(){
+        MainModel.getInstance().getPointsList().removeAll();
+    }
 
 
 

@@ -1,15 +1,19 @@
 package controllerPackage;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.property.ListProperty;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import mainPackage.ForwardKin;
 import mainPackage.InversKin;
 import mainPackage.MainModel;
+import mainPackage.Points;
+
 import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 
 public class JogController implements Initializable{
@@ -56,6 +60,7 @@ public class JogController implements Initializable{
     private int yyValue;
     private int zzValue;
     private boolean isOpened;
+
 
 
 
@@ -768,6 +773,24 @@ public class JogController implements Initializable{
         MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
 
         MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
+    }
+
+
+
+
+    @FXML private void positionButtonClicked(){
+        String name=generateName();
+
+        Points tempPoints=new Points(name,angleValue1,angleValue2,angleValue3);
+        MainModel.getInstance().getPointsList().add(tempPoints);
+
+    }
+
+
+    private String generateName(){
+        int i=MainModel.getInstance().getNumberOfPoint();
+        MainModel.getInstance().setNumberOfPoint(i+1);
+        return "P"+i;
     }
 
 

@@ -46,4 +46,21 @@ public class MainModel{
     public boolean isCheckMode() {
         return checkMode;
     }
+
+    private ObservableList<Points> pointsList = FXCollections.observableArrayList();
+
+
+    public ObservableList<Points> getPointsList() {
+        return pointsList;
+    }
+
+    public void setNumberOfPoint(Integer numberOfPoint) {
+        this.numberOfPoint = numberOfPoint;
+    }
+
+    public Integer getNumberOfPoint() {
+        return numberOfPoint;
+    }
+
+    private Integer numberOfPoint=0;
 }
