@@ -18,6 +18,10 @@ public class Compiler {
         String mvsFunction="MVS";
         String effectorFunction="EFFECTOR";
         String delayFunction="DELAY";
+        String whileFunction="DO";
+        String endFunction="END";
+        int amountOfRepeat=0;
+        int numberOfLine=0;
 
 
 
@@ -25,6 +29,7 @@ public class Compiler {
         for(int i=0;i<list.size();i+=2){
             String choosedFunction=list.get(i);
             String funArgument=list.get(i+1);
+
 
             if(choosedFunction.equals(moveFunction)){
                 int a=Integer.parseInt(funArgument.substring(1,2));
@@ -55,6 +60,27 @@ public class Compiler {
 
 
             }
+
+            else if(choosedFunction.equals(whileFunction)){
+                amountOfRepeat=Integer.parseInt(funArgument);
+                numberOfLine=i;
+                System.out.println("while"+numberOfLine);
+
+            }
+
+            else if (choosedFunction.equals(endFunction)){
+                amountOfRepeat-=1;
+                if(amountOfRepeat>0){
+                    i=numberOfLine;
+                    System.out.println("end"+i);
+
+                }
+
+
+
+            }
+
+
 
 
 
