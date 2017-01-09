@@ -14,11 +14,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import mainPackage.*;
 import mainPackage.Compiler;
-import mainPackage.ForwardKin;
-import mainPackage.Points;
 import org.math.plot.Plot3DPanel;
-import mainPackage.MainModel;
 
 import java.awt.*;
 import java.io.IOException;
@@ -33,6 +31,7 @@ import java.util.stream.Collectors;
 public class MainWindowController implements Initializable{
     private Stage jogWindow=new Stage();
     private Stage pathWindow=new Stage();
+    private Stage loadWindow=new Stage();
     private SwingNode swingNode = new SwingNode();
     @FXML Label informationBar;
     @FXML Pane pane;
@@ -59,7 +58,16 @@ public class MainWindowController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         MainModel.getInstance().currentLabel().textProperty().addListener((observable, oldValue, newValue) -> informationBar.setText(newValue));
 
+        MainModel.getInstance().nameFileProperty().addListener((observable, oldValue, newValue)->{
+            try {
+                setTextArea(newValue);
+            } catch (IOException e) {
+                System.out.println("No such of file!");
+                AlertBox.display("Alert","No such of file!");
+            }
 
+
+        });
 
         MainModel.getInstance().getIntegerList().addListener((ListChangeListener.Change<? extends Integer> c)-> {
                     c.next();
@@ -207,10 +215,26 @@ public class MainWindowController implements Initializable{
 
 
     @FXML private void openButtonClicked() throws IOException {
-        String path=MainModel.getInstance().getPath()+"file.txt";
+        loadWindow=MainModel.getInstance().getLoadStage();
+        loadWindow.getIcons().add(new javafx.scene.image.Image("manipulator_logo.png"));
+        loadWindow.show();
+    }
+
+    @FXML private void saveButtonClicked() throws IOException {
+        Stage saveWindow;
+        MainModel.getInstance().setCommandLine(codeArea.getText());
+        saveWindow=MainModel.getInstance().getSaveStage();
+        saveWindow.getIcons().add(new javafx.scene.image.Image("manipulator_logo.png"));
+        saveWindow.show();
+    }
+
+
+    private void setTextArea(String name) throws IOException {
+        String path=MainModel.getInstance().getPath()+name;
         String contents = Files.lines(Paths.get(path)).collect(Collectors.joining("\n"));
         codeArea.setText(contents);
     }
+
 
     @FXML private void pathDirectoryClicked() throws IOException {
 

@@ -8,35 +8,28 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mainPackage.MainModel;
+
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.StringTokenizer;
 
-public class EditPathController implements Initializable{
-    @FXML private TextField pathField;
+public class LoadController implements Initializable{
+    @FXML private TextField nameField;
     @FXML private Button cancelButton;
     private Stage stage;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        stage=MainModel.getInstance().getEditStage();
+        stage=MainModel.getInstance().getLoadStage();
         stage.initModality(Modality.APPLICATION_MODAL);
 
 
     }
 
 
-    @FXML private void okButtonClicked(){
-        StringBuilder str=new StringBuilder();
-        StringTokenizer stringTokenizer=new StringTokenizer(pathField.getText(),"\\");
-        while (stringTokenizer.hasMoreTokens()){
-            str.append(stringTokenizer.nextToken());
-            str.append("\\\\");
-        }
+    @FXML private void loadButtonClicked(){
 
-        MainModel.getInstance().setPath(str.toString());
-
+        MainModel.getInstance().setNameFile(nameField.getText()+".txt");
         stage.close();
 
     }

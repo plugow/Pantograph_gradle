@@ -15,6 +15,9 @@ public class MainModel{
         return instance;
     }
 
+
+
+    //Label in main stage to show actual mode
     private Label label=new Label();
     public Label currentLabel() {
         return label;
@@ -25,6 +28,7 @@ public class MainModel{
         return link;
     }
 
+    // main stage!
     private Stage stage=new Stage();
     public Stage currentStage() {
         return stage;
@@ -35,55 +39,87 @@ public class MainModel{
         return editStage;
     }
 
+    private Stage loadStage=new Stage();
+    public Stage getLoadStage() {
+        return loadStage;
+    }
 
+    private Stage saveStage=new Stage();
+    public Stage getSaveStage() {
+        return saveStage;
+    }
+
+
+
+    // flag to check mode of programm(simulation/connect)
+    private boolean checkMode=false;
     public void setCheckMode(boolean checkMode) {
         this.checkMode = checkMode;
     }
-
-    private boolean checkMode=false;
-
-    private ObservableList<Integer> integerList = FXCollections.observableArrayList(1,2,3,0);
-
-    public ObservableList<Integer> getIntegerList() {
-
-        return integerList;
-    }
-
-
     public boolean isCheckMode() {
         return checkMode;
     }
 
+
+    // Observable for aktual angles values
+    private ObservableList<Integer> integerList = FXCollections.observableArrayList(1,2,3,0);
+    public ObservableList<Integer> getIntegerList() {return integerList;}
+
+
+
+
+    // observable to list of Points
     private ObservableList<Points> pointsList = FXCollections.observableArrayList();
-
-
     public ObservableList<Points> getPointsList() {
         return pointsList;
     }
 
+
+    // number to create name of points
+    private Integer numberOfPoint=0;
     public void setNumberOfPoint(Integer numberOfPoint) {
         this.numberOfPoint = numberOfPoint;
     }
-
     public Integer getNumberOfPoint() {
         return numberOfPoint;
     }
 
-    private Integer numberOfPoint=0;
+    //actual path to save and load files
+    private String path="C:\\Users\\Pawel\\Desktop\\temp\\";
+    public String getPath() {return path;}
+    public void setPath(String path) {this.path = path;}
 
 
-    private StringProperty path=new SimpleStringProperty("C:\\Users\\Pawel\\Desktop\\temp\\");
+//    // actual name of file
+//    private String nameFile="file.txt";
+//    public String getNameFile() {return nameFile;}
+//    public void setNameFile(String nameFile) {this.nameFile = nameFile;}
 
-    public String getPath() {
-        return path.get();
+    private StringProperty nameFile =new SimpleStringProperty("name");
+
+    public String getNameFile() {
+        return nameFile.get();
     }
 
-    public void setPath(String path) {
-        this.path.set(path);
+    public StringProperty nameFileProperty() {
+        return nameFile;
     }
 
-    public StringProperty pathProperty() {
-        return path;
+    public void setNameFile(String nameFile) {
+        this.nameFile.set(nameFile);
+    }
 
+    private StringProperty commandLine=new SimpleStringProperty();
+
+    public String getCommandLine() {
+        return commandLine.get();
+    }
+
+    public StringProperty commandLineProperty() {
+        return commandLine;
+    }
+
+    public void setCommandLine(String commandLine) {
+        this.commandLine.set(commandLine);
     }
 }
