@@ -30,8 +30,6 @@ import java.util.stream.Collectors;
 
 public class MainWindowController implements Initializable{
     private Stage jogWindow=new Stage();
-    private Stage pathWindow=new Stage();
-    private Stage loadWindow=new Stage();
     private SwingNode swingNode = new SwingNode();
     @FXML Label informationBar;
     @FXML Pane pane;
@@ -199,9 +197,9 @@ public class MainWindowController implements Initializable{
 
     private void runMethod(ArrayList<String> list){
         class CompilerTask implements Runnable{
-            Compiler compiler=new Compiler();
-            ArrayList<String> list;
-            CompilerTask(ArrayList<String> l){list=l;}
+            private Compiler compiler=new Compiler();
+            private ArrayList<String> list;
+            private CompilerTask(ArrayList<String> l){list=l;}
             @Override
             public void run() {
                 compiler.compile(list);
@@ -215,6 +213,7 @@ public class MainWindowController implements Initializable{
 
 
     @FXML private void openButtonClicked() throws IOException {
+        Stage loadWindow;
         loadWindow=MainModel.getInstance().getLoadStage();
         loadWindow.getIcons().add(new javafx.scene.image.Image("manipulator_logo.png"));
         loadWindow.show();
@@ -237,7 +236,7 @@ public class MainWindowController implements Initializable{
 
 
     @FXML private void pathDirectoryClicked() throws IOException {
-
+        Stage pathWindow;
         pathWindow=MainModel.getInstance().getEditStage();
         pathWindow.getIcons().add(new javafx.scene.image.Image("manipulator_logo.png"));
         pathWindow.show();

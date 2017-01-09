@@ -1,14 +1,7 @@
 package mainPackage;
 
 import javafx.beans.property.*;
-import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Created by Pawel on 2017-01-08.
- */
 public class Points {
 
     private final StringProperty mName;

@@ -3,7 +3,6 @@ package controllerPackage;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -12,7 +11,6 @@ import mainPackage.MainModel;
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 

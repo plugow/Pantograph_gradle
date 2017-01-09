@@ -3,7 +3,6 @@ package controllerPackage;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -14,7 +13,6 @@ import java.util.ResourceBundle;
 
 public class LoadController implements Initializable{
     @FXML private TextField nameField;
-    @FXML private Button cancelButton;
     private Stage stage;
 
     @Override
