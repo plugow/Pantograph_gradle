@@ -63,4 +63,10 @@ public class MainModel{
     }
 
     private Integer numberOfPoint=0;
+
+    private Object lock=new Object();
+
+    public Object getLock() {
+        return lock;
+    }
 }

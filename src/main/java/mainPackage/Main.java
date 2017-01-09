@@ -37,7 +37,7 @@ public class Main extends Application {
         startWindow.show();
 
         //Pause for Preview
-        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+        PauseTransition delay = new PauseTransition(Duration.seconds(1));
         delay.setOnFinished(event -> startWindow.setScene(new Scene(root2, 340, 200)));
         delay.play();
 

@@ -46,6 +46,7 @@ public class MainWindowController implements Initializable{
     private float alfa2=pi/2;
     private float alfa3=-pi/2;
     private int effector;
+    Object lock=new Object();
 
 
 
@@ -133,6 +134,7 @@ public class MainWindowController implements Initializable{
 
         swingNode.setContent(plot3);
 
+
     }
 
 
@@ -162,25 +164,39 @@ public class MainWindowController implements Initializable{
             commandList.add(temp);
             System.out.println(temp);
         }
+        runMethod(commandList);
+
+
 
 //        System.out.println(commandList.size());
 //        System.out.println(commandList.get(3));
 
-        Compiler compiler=new Compiler();
-        compiler.compile(commandList);
+
+
 
     }
 
 
-    private void addPoint(List<Integer> list){
-        float[][] results;
-        results=forwardKin.forward(list.get(0),list.get(1),list.get(2));
-
-
-    }
 
     @FXML private void clearButtonClicked(){
         MainModel.getInstance().getPointsList().removeAll();
+    }
+
+
+
+    private void runMethod(ArrayList<String> list){
+        class CompilerTask implements Runnable{
+            Compiler compiler=new Compiler();
+            ArrayList<String> list;
+            CompilerTask(ArrayList<String> l){list=l;}
+            @Override
+            public void run() {
+                compiler.compile(list);
+
+            }
+        }
+        Thread thread = new Thread(new CompilerTask(list));
+        thread.start();
     }
 
 
