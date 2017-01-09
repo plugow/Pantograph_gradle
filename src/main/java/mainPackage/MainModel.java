@@ -1,5 +1,7 @@
 package mainPackage;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
@@ -26,6 +28,11 @@ public class MainModel{
     private Stage stage=new Stage();
     public Stage currentStage() {
         return stage;
+    }
+
+    private Stage editStage=new Stage();
+    public Stage getEditStage() {
+        return editStage;
     }
 
 
@@ -64,9 +71,19 @@ public class MainModel{
 
     private Integer numberOfPoint=0;
 
-    private Object lock=new Object();
 
-    public Object getLock() {
-        return lock;
+    private StringProperty path=new SimpleStringProperty("C:\\Users\\Pawel\\Desktop\\temp\\");
+
+    public String getPath() {
+        return path.get();
+    }
+
+    public void setPath(String path) {
+        this.path.set(path);
+    }
+
+    public StringProperty pathProperty() {
+        return path;
+
     }
 }

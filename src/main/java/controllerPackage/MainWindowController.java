@@ -21,13 +21,18 @@ import org.math.plot.Plot3DPanel;
 import mainPackage.MainModel;
 
 import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class MainWindowController implements Initializable{
     private Stage jogWindow=new Stage();
+    private Stage pathWindow=new Stage();
     private SwingNode swingNode = new SwingNode();
     @FXML Label informationBar;
     @FXML Pane pane;
@@ -46,7 +51,7 @@ public class MainWindowController implements Initializable{
     private float alfa2=pi/2;
     private float alfa3=-pi/2;
     private int effector;
-    Object lock=new Object();
+
 
 
 
@@ -179,7 +184,7 @@ public class MainWindowController implements Initializable{
 
 
     @FXML private void clearButtonClicked(){
-        MainModel.getInstance().getPointsList().removeAll();
+        MainModel.getInstance().currentStage().close();
     }
 
 
@@ -197,6 +202,22 @@ public class MainWindowController implements Initializable{
         }
         Thread thread = new Thread(new CompilerTask(list));
         thread.start();
+    }
+
+
+
+    @FXML private void openButtonClicked() throws IOException {
+        String path=MainModel.getInstance().getPath()+"file.txt";
+        String contents = Files.lines(Paths.get(path)).collect(Collectors.joining("\n"));
+        codeArea.setText(contents);
+    }
+
+    @FXML private void pathDirectoryClicked() throws IOException {
+
+        pathWindow=MainModel.getInstance().getEditStage();
+        pathWindow.getIcons().add(new javafx.scene.image.Image("manipulator_logo.png"));
+        pathWindow.show();
+
     }
 
 

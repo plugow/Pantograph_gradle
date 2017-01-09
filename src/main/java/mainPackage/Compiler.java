@@ -6,8 +6,6 @@ package mainPackage;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 
 public class Compiler {
@@ -15,11 +13,11 @@ public class Compiler {
 
 
     public void compile(ArrayList<String> list){
-        boolean isCompiled=false;
-        String moveFunction=new String("MOVE");
-        String mvsFunction=new String("MVS");
-        String effectorFunction=new String("EFFECTOR");
-        String delayFunction=new String("DELAY");
+
+        String moveFunction="MOVE";
+        String mvsFunction="MVS";
+        String effectorFunction="EFFECTOR";
+        String delayFunction="DELAY";
 
 
 
@@ -30,27 +28,30 @@ public class Compiler {
 
             if(choosedFunction.equals(moveFunction)){
                 int a=Integer.parseInt(funArgument.substring(1,2));
-                try {
-                    MainModel.getInstance().getIntegerList().setAll(MainModel.getInstance().getPointsList().get(a).getmFirstValue(),MainModel.getInstance().getPointsList().get(a).getmSecondValue(),MainModel.getInstance().getPointsList().get(a).getmThirdValue(),90);
-                    System.out.println("pierwszy");
-                    TimeUnit.MILLISECONDS.sleep(2000);
+                Points point=MainModel.getInstance().getPointsList().get(a);
 
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                MainModel.getInstance().getIntegerList().setAll(point.getmFirstValue(),point.getmSecondValue(),point.getmThirdValue(),MainModel.getInstance().getIntegerList().get(3));
+                //System.out.println("pierwszy");
 
             }
             else if (choosedFunction.equals(mvsFunction)){
 
+
             }
 
             else if (choosedFunction.equals(effectorFunction)){
+                if(funArgument.equals("OPEN")) MainModel.getInstance().getIntegerList().setAll(MainModel.getInstance().getIntegerList().get(0),MainModel.getInstance().getIntegerList().get(1),MainModel.getInstance().getIntegerList().get(2),90);
+                else if(funArgument.equals("CLOSE")) MainModel.getInstance().getIntegerList().setAll(MainModel.getInstance().getIntegerList().get(0),MainModel.getInstance().getIntegerList().get(1),MainModel.getInstance().getIntegerList().get(2),118);
 
             }
 
             else if (choosedFunction.equals(delayFunction)){
                 int valueOfDelay=Integer.parseInt(funArgument);
-
+                try {
+                    TimeUnit.MILLISECONDS.sleep(valueOfDelay);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
 
             }

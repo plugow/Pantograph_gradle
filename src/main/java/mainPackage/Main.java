@@ -26,6 +26,8 @@ public class Main extends Application {
         Parent root2 = FXMLLoader.load(getClass().getClassLoader().getResource("startWindowStyle.fxml"));
         Parent root3 = FXMLLoader.load(getClass().getClassLoader().getResource("previewStyle.fxml"));
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("mainWindowStyle.fxml"));
+        Parent root4 = FXMLLoader.load(getClass().getClassLoader().getResource("editPathStyle.fxml"));
+
         MainModel.getInstance().currentStage().getIcons().add(new Image("manipulator_logo.png"));
 
 
@@ -43,6 +45,9 @@ public class Main extends Application {
 
         MainModel.getInstance().currentStage().setTitle("Pantograph");
         MainModel.getInstance().currentStage().setScene(new Scene(root, 900, 600));
+
+        MainModel.getInstance().currentStage().setTitle("Pantograph");
+        MainModel.getInstance().getEditStage().setScene(new Scene(root4, 340, 200));
 
 
 
