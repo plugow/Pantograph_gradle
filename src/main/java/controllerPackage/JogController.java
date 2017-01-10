@@ -1,6 +1,7 @@
 package controllerPackage;
 
 
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -92,6 +93,20 @@ public class JogController implements Initializable{
         velocitySlider.valueProperty().addListener((obs, oldval, newVal) ->
                 velocitySlider.setValue(newVal.intValue()));
         isOpened =true;
+
+        //uptade by script working
+        MainModel.getInstance().getIntegerList().addListener((ListChangeListener.Change<? extends Integer> c)-> {
+                    c.next();
+
+                    if (c.wasReplaced()){
+                        angleValue1=MainModel.getInstance().getIntegerList().get(0);
+                        angleValue2=MainModel.getInstance().getIntegerList().get(1);
+                        angleValue3=MainModel.getInstance().getIntegerList().get(2);
+                        angleValue4=MainModel.getInstance().getIntegerList().get(3);
+                    }
+
+                }
+        );
 
 
     }

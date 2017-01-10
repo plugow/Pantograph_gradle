@@ -24,9 +24,8 @@ public class Compiler {
         int amountOfRepeat=0;
         int numberOfLine=0;
         int velocity=100;
-        int velocityInit;
-        int step;
-        int helpStep =20;
+
+
 
 
 
@@ -86,6 +85,10 @@ public class Compiler {
 
             }
 
+            else if(choosedFunction.equals(velocityFunction)){
+                velocity=Integer.parseInt(funArgument);
+            }
+
 
 
 
@@ -108,42 +111,40 @@ public class Compiler {
         int value3=MainModel.getInstance().getIntegerList().get(2);
         int value4=MainModel.getInstance().getIntegerList().get(3);
 
+        int step=(velocity+10)/10;
+        int helpStep=0;
+
+
+
 
 
         while(value1!=joint1 || value2!=joint2 || value3!=joint3){
-            if(value1<joint1) value1+=1;
-            else value1-=1;
-            if(value2<joint1) value2+=1;
-            else value1-=1;
-            if(value3<joint1) value3+=1;
-            else value1-=1;
-
-
             try {
-                MainModel.getInstance().getIntegerList().setAll(value1,value2,value3,value4);
+                if(value1<joint1) value1+=1;
+                else if (value1>joint1) value1-=1;
+                if(value2<joint2) value2+=1;
+                else  if (value2>joint2) value2-=1;
+                if(value3<joint3) value3+=1;
+                else if (value3>joint3) value3-=1;
+                helpStep+=1;
+
+                if(MainModel.getInstance().isCheckMode()){
+                if(step==helpStep) {
+                    MainModel.getInstance().getIntegerList().setAll(value1, value2, value3, value4);
+                    helpStep=0;
+                }}
                 TimeUnit.MILLISECONDS.sleep(101-velocity);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
+
         }
-
-
+        MainModel.getInstance().getIntegerList().setAll(joint1,joint2,joint3,value4);
+        System.out.println("koniec");
     }
 
 
-    private boolean moveDirection(int target, int actual){
-        boolean bool=false;
-        if (target>=90){
-            if(target>actual) bool=true;
-            else bool=false;}
-        else {
-            if (target>actual) bool=true;
-            else bool=false;
-        }
-        return bool;
-
-        }
 
 
 
