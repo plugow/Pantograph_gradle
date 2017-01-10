@@ -29,6 +29,7 @@ public class Main extends Application {
         Parent root4 = FXMLLoader.load(getClass().getClassLoader().getResource("editPathStyle.fxml"));
         Parent root5 = FXMLLoader.load(getClass().getClassLoader().getResource("loadStyle.fxml"));
         Parent root6 = FXMLLoader.load(getClass().getClassLoader().getResource("saveStyle.fxml"));
+        Parent root7 = FXMLLoader.load(getClass().getClassLoader().getResource("aboutStyle.fxml"));
 
         MainModel.getInstance().currentStage().getIcons().add(new Image("manipulator_logo.png"));
 
@@ -61,6 +62,10 @@ public class Main extends Application {
         ////create save stage in singleton
         MainModel.getInstance().getSaveStage().setTitle("Pantograph");
         MainModel.getInstance().getSaveStage().setScene(new Scene(root6, 340, 200));
+
+        ////create save stage in singleton
+        MainModel.getInstance().getAboutStage().setTitle("Pantograph");
+        MainModel.getInstance().getAboutStage().setScene(new Scene(root7, 500, 400));
 
 
 

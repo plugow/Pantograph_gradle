@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllerPackage.AboutController">
+    <children>
+        <Label text="About">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+            <VBox.margin>
+                <Insets bottom="10.0" top="10.0" />
+            </VBox.margin>
+        </Label>
+      <TextArea editable="false" prefHeight="300.0" prefWidth="200.0" text="Właściwości języka skryptowego:&#10;-MOVE P0 - ruch złączowy do punktu P0&#10;-MOVEX 10 - ruch liniowy po osi x o wartość 10&#10;-MOVEY 10 - ruch liniowy po osi y o wartość 10&#10;-MOVEZ -10 - ruch liniowy po osi z o wartość -10&#10;-VELOCITY 50 - ustalenie prędkości na 50% maksymalnej wartości dla następnych ruchów&#10;-EFFECTOR CLOSE - zamknięcie chwytaka&#10;-EFFECTOR OPEN - otwarcie chwytaka&#10;-DELAY 1000 - opóźnienie o wartości 1000 ms&#10;-FOR 10 ... END FOR - powtórzenie ruchów wewnątrz pętli 10 razy&#10;&#10;&#10;Właśność Paweł Ługowski 10.01.2017" wrapText="true">
+         <VBox.margin>
+            <Insets left="10.0" right="10.0" />
+         </VBox.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextArea>
+        <HBox alignment="CENTER" prefHeight="57.0" prefWidth="340.0">
+            <children>
+                <Button fx:id="okButton" alignment="CENTER" mnemonicParsing="false" onAction="#okButtonClicked" prefWidth="60.0" text="OK">
+               <HBox.margin>
+                  <Insets bottom="10.0" />
+               </HBox.margin></Button>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </HBox>
+    </children>
+</VBox>

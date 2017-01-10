@@ -244,6 +244,15 @@ public class MainWindowController implements Initializable{
     }
 
 
+    @FXML private void aboutButtonClicked(){
+        Stage aboutWindow;
+        aboutWindow=MainModel.getInstance().getAboutStage();
+        aboutWindow.getIcons().add(new javafx.scene.image.Image("manipulator_logo.png"));
+        aboutWindow.show();
+
+    }
+
+
 
 
 

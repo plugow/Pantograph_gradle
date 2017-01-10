@@ -49,6 +49,11 @@ public class MainModel{
         return saveStage;
     }
 
+    private Stage aboutStage=new Stage();
+    public Stage getAboutStage() {
+        return aboutStage;
+    }
+
 
 
     // flag to check mode of programm(simulation/connect)
