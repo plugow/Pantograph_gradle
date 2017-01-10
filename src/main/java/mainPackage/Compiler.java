@@ -1,9 +1,4 @@
 package mainPackage;
-
-
-
-
-
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -167,9 +162,9 @@ public class Compiler {
         int xValue= (int) results[3][0];
         int yValue= (int) results[3][1];
         int zValue= (int) results[3][2];
-        System.out.println(xValue);
-        System.out.println(yValue);
-        System.out.println(zValue);
+//        System.out.println(xValue);
+//        System.out.println(yValue);
+//        System.out.println(zValue);
         int step=(velocity+10)/10;
         int helpStep=0;
         int sign;

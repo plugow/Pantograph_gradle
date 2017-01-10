@@ -102,9 +102,9 @@ public class MainModel{
 
     private StringProperty nameFile =new SimpleStringProperty("name");
 
-    public String getNameFile() {
-        return nameFile.get();
-    }
+//    public String getNameFile() {
+//        return nameFile.get();
+//    }
 
     public StringProperty nameFileProperty() {
         return nameFile;
@@ -120,9 +120,9 @@ public class MainModel{
         return commandLine.get();
     }
 
-    public StringProperty commandLineProperty() {
-        return commandLine;
-    }
+//    public StringProperty commandLineProperty() {
+//        return commandLine;
+//    }
 
     public void setCommandLine(String commandLine) {
         this.commandLine.set(commandLine);

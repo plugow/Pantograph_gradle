@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import mainPackage.AlertBox;
 import mainPackage.MainModel;
 
 import java.io.*;
@@ -43,7 +44,7 @@ public class SaveController implements Initializable{
 
             System.out.println(MainModel.getInstance().getCommandLine());
         } catch (IOException ex) {
-            // handle me
+            AlertBox.display("Niespodziewany problem","Ok");
         }
 
         stage.close();
