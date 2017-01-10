@@ -28,6 +28,7 @@ public class AlertBox {
         //Display window and wait for it to be closed before returning
         Scene scene = new Scene(layout,200,100);
         window.setScene(scene);
+        window.getIcons().add(new javafx.scene.image.Image("manipulator_logo.png"));
         window.showAndWait();
     }
 

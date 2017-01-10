@@ -58,7 +58,7 @@
                             </image>
                         </ImageView>
                     </graphic></Button>
-                <Button fx:id="compiledButton" mnemonicParsing="false" onAction="#compiledButtonClicked" text="Compile">
+                <Button fx:id="compiledButton" mnemonicParsing="false" onAction="#compiledButtonClicked" text="Compile and Run">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -66,16 +66,6 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button mnemonicParsing="false" text="Run">
-               <graphic>
-                  <ImageView fitHeight="15.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@run_icon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearButtonClicked" text="CLEAR POINTS" />
             </items>
         </ToolBar>
         <HBox spacing="5.0" VBox.vgrow="ALWAYS">
