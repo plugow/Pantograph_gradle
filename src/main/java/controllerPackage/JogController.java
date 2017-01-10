@@ -57,6 +57,14 @@ public class JogController implements Initializable{
     private int yyValue;
     private int zzValue;
     private boolean isOpened;
+    private int upLimit=180;
+    private int downLimit=0;
+
+    private int upLimit2=140;
+    private int downLimit2=40;
+
+    private int upLimit3=150;
+    private int downLimit3=40;
 
 
 
@@ -105,26 +113,27 @@ public class JogController implements Initializable{
 
         public void run() {
             //System.out.println(angleValue1);
-            angleValue1+=1;
+            if(angleValue1<upLimit){ angleValue1+=1;
+
             if(MainModel.getInstance().isCheckMode()){
                 if(angleValue11==angleValue1-step){
                     MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
                     angleValue11=angleValue1;
                 }}
-            MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
+            MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);}
         }
     }
 
     private class MinusTimerTask1 extends TimerTask {
         public void run() {
 
-            angleValue1-=1;
+            if(angleValue1>downLimit){ angleValue1-=1;
             if(MainModel.getInstance().isCheckMode()){
                 if(angleValue11==angleValue1+step){
                     MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
                     angleValue11=angleValue1;
                 }}
-            MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
+            MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);}
         }
     }
 
@@ -133,26 +142,26 @@ public class JogController implements Initializable{
 
         public void run() {
 
-            angleValue2+=1;
+            if(angleValue2<upLimit2){ angleValue2+=1;
             if(MainModel.getInstance().isCheckMode()){
                 if(angleValue22==angleValue2-step){
                     MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
                     angleValue22=angleValue2;
                 }}
-            MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);
+            MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);}
         }
     }
 
     private class MinusTimerTask2 extends TimerTask {
         public void run() {
 
-            angleValue2-=1;
+            if(angleValue2>downLimit2){ angleValue2-=1;
             if(MainModel.getInstance().isCheckMode()){
                 if(angleValue22==angleValue2+step){
                     MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
                     angleValue22=angleValue2;
                 }}
-            MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);
+            MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,255);}
         }
     }
 
@@ -160,27 +169,27 @@ public class JogController implements Initializable{
 
         public void run() {
             //System.out.println(angleValue3);
-            angleValue3+=1;
+            if(angleValue3<upLimit3){ angleValue3+=1;
 
             if(MainModel.getInstance().isCheckMode()){
                 if(angleValue33==angleValue3-step){
                     MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
                     angleValue33=angleValue3;
                 }}
-            MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
+            MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);}
         }
     }
 
     private class MinusTimerTask3 extends TimerTask {
         public void run() {
 
-            angleValue3-=1;
+            if(angleValue3>downLimit3){ angleValue3-=1;
             if(MainModel.getInstance().isCheckMode()){
                 if(angleValue33==angleValue3+step){
                     MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
                     angleValue33=angleValue3;
                 }}
-            MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
+            MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);}
         }
     }
 
@@ -409,20 +418,20 @@ public class JogController implements Initializable{
     // first jog buttons
     @FXML private void firstMinusClicked(){
         System.out.println(angleValue1);
-        angleValue1-=1;
+        if(angleValue1>downLimit){ angleValue1-=1;
 
 
         MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
 
-        MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,0);
+        MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,0);}
 
 
     }
     @FXML private void firstPlusClicked(){
-        angleValue1+=1;
+        if(angleValue1<upLimit){ angleValue1+=1;
         System.out.println(angleValue1);
         MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
-        MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,0);
+        MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,0);}
 
 
     }
@@ -430,37 +439,33 @@ public class JogController implements Initializable{
     //second buttons
     @FXML private void secondMinusClicked(){
         System.out.println(angleValue2);
-        angleValue2-=1;
 
+        if(angleValue2>downLimit2){ angleValue2-=1;
         MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,0);
-
-
-        MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
+        MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);}
 
     }
     @FXML private void secondPlusClicked(){
-        angleValue2+=1;
+        if(angleValue2<upLimit2){ angleValue2+=1;
         System.out.println(angleValue2);
         MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
-        MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,0);
+        MainModel.getInstance().currentLink().sendToneMessage(2,angleValue2,0);}
 
     }
 
     //third buttons
     @FXML private void thirdMinusClicked(){
         System.out.println(angleValue3);
-        angleValue3-=1;
+        if(angleValue3>downLimit3){ angleValue3-=1;
         MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
-
-
-        MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,0);
+        MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,0);}
 
     }
     @FXML private void thirdPlusClicked(){
-        angleValue3+=1;
+        if( angleValue3<upLimit3){ angleValue3+=1;
         System.out.println(angleValue3);
         MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
-        MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,0);
+        MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,0);}
 
     }
     //endregion
