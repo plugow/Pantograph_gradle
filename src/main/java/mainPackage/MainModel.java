@@ -62,7 +62,7 @@ public class MainModel{
 
 
     // Observable for aktual angles values
-    private ObservableList<Integer> integerList = FXCollections.observableArrayList(1,2,3,0);
+    private ObservableList<Integer> integerList = FXCollections.observableArrayList(90,90,90,90);
     public ObservableList<Integer> getIntegerList() {return integerList;}
 
 

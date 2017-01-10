@@ -15,12 +15,14 @@ public class Compiler {
     public void compile(ArrayList<String> list){
 
         String moveFunction="MOVE";
-        String mvsFunction="MVS";
         String effectorFunction="EFFECTOR";
         String delayFunction="DELAY";
         String whileFunction="DO";
         String endFunction="END";
         String velocityFunction="VELOCITY";
+        String moveX="MOVEX";
+        String moveY="MOVEY";
+        String moveZ="MOVEZ";
         int amountOfRepeat=0;
         int numberOfLine=0;
         int velocity=100;
@@ -42,10 +44,6 @@ public class Compiler {
 
                 //MainModel.getInstance().getIntegerList().setAll(point.getmFirstValue(),point.getmSecondValue(),point.getmThirdValue(),MainModel.getInstance().getIntegerList().get(3));
                 //System.out.println("pierwszy");
-
-            }
-            else if (choosedFunction.equals(mvsFunction)){
-
 
             }
 
@@ -87,6 +85,16 @@ public class Compiler {
 
             else if(choosedFunction.equals(velocityFunction)){
                 velocity=Integer.parseInt(funArgument);
+            }
+
+            else if(choosedFunction.equals(moveX)){
+                moveStraight("y", Integer.parseInt(funArgument),velocity);
+            }
+            else if(choosedFunction.equals(moveY)){
+                moveStraight("x", Integer.parseInt(funArgument),velocity);
+            }
+            else if(choosedFunction.equals(moveZ)){
+                moveStraight("z", Integer.parseInt(funArgument),velocity);
             }
 
 
@@ -142,6 +150,116 @@ public class Compiler {
         }
         MainModel.getInstance().getIntegerList().setAll(joint1,joint2,joint3,value4);
         System.out.println("koniec");
+    }
+
+
+    private void moveStraight(String coordinate, int value,int velocity){
+        int angleValue1=MainModel.getInstance().getIntegerList().get(0);
+        int angleValue2=MainModel.getInstance().getIntegerList().get(1);
+        int angleValue3=MainModel.getInstance().getIntegerList().get(2);
+        int angleValue4=MainModel.getInstance().getIntegerList().get(3);
+        int temp =0;
+        float[][] results;
+        ForwardKin forwardKin=new ForwardKin();
+        results=forwardKin.forward((float) Math.toRadians(angleValue1),(float) Math.toRadians(angleValue2),-(float) Math.toRadians(angleValue3));
+        int xValue= (int) results[3][0];
+        int yValue= (int) results[3][1];
+        int zValue= (int) results[3][2];
+        System.out.println(xValue);
+        System.out.println(yValue);
+        System.out.println(zValue);
+        int step=(velocity+10)/10;
+        int helpStep=0;
+        int sign;
+
+        if (coordinate.equals("x")){
+            if(value<0) sign=-1;
+            else sign=1;
+            while(temp!=Math.abs(value)){
+                try {
+                xValue+=sign;
+                helpStep+=1;
+                temp+=1;
+
+                double[] thetaValue;
+                thetaValue=InversKin.inverse(xValue,yValue,zValue);
+                angleValue1=(int) Math.round(Math.toDegrees(thetaValue[0]));
+                angleValue2=(int) Math.round(Math.toDegrees(thetaValue[1]));
+                angleValue3=-(int) Math.round(Math.toDegrees(thetaValue[2]));
+                if(MainModel.getInstance().isCheckMode()){
+                    if(step==helpStep) {
+                        MainModel.getInstance().getIntegerList().setAll(angleValue1, angleValue2, angleValue3, angleValue4);
+                        helpStep=0;
+                    }}
+                    TimeUnit.MILLISECONDS.sleep(101-velocity);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            MainModel.getInstance().getIntegerList().setAll(angleValue1, angleValue2, angleValue3, angleValue4);
+
+
+        }
+        if (coordinate.equals("y")){
+            if(value<0) sign=-1;
+            else sign=1;
+            while(temp!=Math.abs(value)){
+                try {
+                    yValue+=sign;
+                    helpStep+=1;
+                    temp+=1;
+                    System.out.println(temp);
+                    double[] thetaValue;
+                    thetaValue=InversKin.inverse(xValue,yValue,zValue);
+                    angleValue1=(int) Math.round(Math.toDegrees(thetaValue[0]));
+                    angleValue2=(int) Math.round(Math.toDegrees(thetaValue[1]));
+                    angleValue3=-(int) Math.round(Math.toDegrees(thetaValue[2]));
+                    if(MainModel.getInstance().isCheckMode()){
+                        if(step==helpStep) {
+                            MainModel.getInstance().getIntegerList().setAll(angleValue1, angleValue2, angleValue3, angleValue4);
+                            helpStep=0;
+                        }}
+                    TimeUnit.MILLISECONDS.sleep(101-velocity);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            MainModel.getInstance().getIntegerList().setAll(angleValue1, angleValue2, angleValue3, angleValue4);
+        }
+        if (coordinate.equals("z")){
+            if(value<0) sign=-1;
+            else sign=1;
+            while(temp!=Math.abs(value)){
+                try {
+                    zValue+=sign;
+                    helpStep+=1;
+                    temp+=1;
+                    double[] thetaValue;
+                    thetaValue=InversKin.inverse(xValue,yValue,zValue);
+                    angleValue1=(int) Math.round(Math.toDegrees(thetaValue[0]));
+                    angleValue2=(int) Math.round(Math.toDegrees(thetaValue[1]));
+                    angleValue3=-(int) Math.round(Math.toDegrees(thetaValue[2]));
+                    if(MainModel.getInstance().isCheckMode()){
+                        if(step==helpStep) {
+                            MainModel.getInstance().getIntegerList().setAll(angleValue1, angleValue2, angleValue3, angleValue4);
+                            helpStep=0;
+                        }}
+                    TimeUnit.MILLISECONDS.sleep(101-velocity);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            MainModel.getInstance().getIntegerList().setAll(angleValue1, angleValue2, angleValue3, angleValue4);
+        }
+
+
+
+
+
     }
 
 
