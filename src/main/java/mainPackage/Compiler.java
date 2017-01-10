@@ -17,7 +17,7 @@ public class Compiler {
         String moveFunction="MOVE";
         String effectorFunction="EFFECTOR";
         String delayFunction="DELAY";
-        String whileFunction="DO";
+        String whileFunction="FOR";
         String endFunction="END";
         String velocityFunction="VELOCITY";
         String moveX="MOVEX";
@@ -118,12 +118,8 @@ public class Compiler {
         int value2=MainModel.getInstance().getIntegerList().get(1);
         int value3=MainModel.getInstance().getIntegerList().get(2);
         int value4=MainModel.getInstance().getIntegerList().get(3);
-
         int step=(velocity+10)/10;
         int helpStep=0;
-
-
-
 
 
         while(value1!=joint1 || value2!=joint2 || value3!=joint3){
@@ -141,6 +137,9 @@ public class Compiler {
                     MainModel.getInstance().getIntegerList().setAll(value1, value2, value3, value4);
                     helpStep=0;
                 }}
+                MainModel.getInstance().currentLink().sendToneMessage(1,value1,255);
+                MainModel.getInstance().currentLink().sendToneMessage(2,value2,255);
+                MainModel.getInstance().currentLink().sendToneMessage(3,value3,255);
                 TimeUnit.MILLISECONDS.sleep(101-velocity);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -149,6 +148,9 @@ public class Compiler {
 
         }
         MainModel.getInstance().getIntegerList().setAll(joint1,joint2,joint3,value4);
+        MainModel.getInstance().currentLink().sendToneMessage(1,value1,255);
+        MainModel.getInstance().currentLink().sendToneMessage(2,value2,255);
+        MainModel.getInstance().currentLink().sendToneMessage(3,value3,255);
         System.out.println("koniec");
     }
 
@@ -191,6 +193,9 @@ public class Compiler {
                         MainModel.getInstance().getIntegerList().setAll(angleValue1, angleValue2, angleValue3, angleValue4);
                         helpStep=0;
                     }}
+                    MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
+                    MainModel.getInstance().currentLink().sendToneMessage(2,180-angleValue2,255);
+                    MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
                     TimeUnit.MILLISECONDS.sleep(101-velocity);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -199,6 +204,9 @@ public class Compiler {
             }
 
             MainModel.getInstance().getIntegerList().setAll(angleValue1, angleValue2, angleValue3, angleValue4);
+            MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
+            MainModel.getInstance().currentLink().sendToneMessage(2,180-angleValue2,255);
+            MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
 
 
         }
@@ -221,6 +229,9 @@ public class Compiler {
                             MainModel.getInstance().getIntegerList().setAll(angleValue1, angleValue2, angleValue3, angleValue4);
                             helpStep=0;
                         }}
+                    MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
+                    MainModel.getInstance().currentLink().sendToneMessage(2,180-angleValue2,255);
+                    MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
                     TimeUnit.MILLISECONDS.sleep(101-velocity);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -228,6 +239,9 @@ public class Compiler {
 
             }
             MainModel.getInstance().getIntegerList().setAll(angleValue1, angleValue2, angleValue3, angleValue4);
+            MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
+            MainModel.getInstance().currentLink().sendToneMessage(2,180-angleValue2,255);
+            MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
         }
         if (coordinate.equals("z")){
             if(value<0) sign=-1;
@@ -247,12 +261,18 @@ public class Compiler {
                             MainModel.getInstance().getIntegerList().setAll(angleValue1, angleValue2, angleValue3, angleValue4);
                             helpStep=0;
                         }}
+                    MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
+                    MainModel.getInstance().currentLink().sendToneMessage(2,180-angleValue2,255);
+                    MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
                     TimeUnit.MILLISECONDS.sleep(101-velocity);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
             }
+            MainModel.getInstance().currentLink().sendToneMessage(1,angleValue1,255);
+            MainModel.getInstance().currentLink().sendToneMessage(2,180-angleValue2,255);
+            MainModel.getInstance().currentLink().sendToneMessage(3,angleValue3,255);
             MainModel.getInstance().getIntegerList().setAll(angleValue1, angleValue2, angleValue3, angleValue4);
         }
 
