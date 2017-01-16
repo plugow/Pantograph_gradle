@@ -413,13 +413,13 @@ public class JogController implements Initializable{
     @FXML private void effectorButtonClicked(){
         if(isOpened){
             angleValue4=118;
-            MainModel.getInstance().currentLink().sendToneMessage(4,angleValue4,200);
+            MainModel.getInstance().currentLink().sendToneMessage(4,angleValue4,100);
             isOpened=false;
             System.out.println("effector closed");
             MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);
         }
         else{angleValue4=90;
-            MainModel.getInstance().currentLink().sendToneMessage(4,angleValue4,200);
+            MainModel.getInstance().currentLink().sendToneMessage(4,angleValue4,100);
             isOpened=true;
             System.out.println("effector opened");
             MainModel.getInstance().getIntegerList().setAll(angleValue1,angleValue2,angleValue3,angleValue4);

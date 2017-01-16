@@ -65,7 +65,7 @@ public class Main extends Application {
 
         ////create save stage in singleton
         MainModel.getInstance().getAboutStage().setTitle("Pantograph");
-        MainModel.getInstance().getAboutStage().setScene(new Scene(root7, 500, 400));
+        MainModel.getInstance().getAboutStage().setScene(new Scene(root7, 500, 450));
 
 
 
