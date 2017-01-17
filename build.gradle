@@ -1,18 +1,35 @@
 apply plugin: 'idea'
 apply plugin: 'java'
 
-apply plugin: 'maven'
+apply plugin: 'eclipse'
+
+
 
 sourceCompatibility = 1.8
 
+buildscript {
+    repositories {
+        maven {
+            url("https://plugins.gradle.org/m2/")
+            mavenCentral()
+        }
+        flatDir {
+            dirs './src/main/resources/rxtxSerial.dll'
+        }
+    }
+    dependencies {
+        classpath 'com.github.rholder:gradle-one-jar:1.0.4'
+    }
+}
 repositories {
     maven {
         url("https://plugins.gradle.org/m2/")
-    }
-    flatDir {
-        dirs './src/main/resources/rxtxSerial.dll'
+        mavenCentral()
     }
 }
+
+
+
 
 
 dependencies {
@@ -36,6 +53,17 @@ dependencies {
 
 
 
-
-
 }
+version = '1.0'
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+                'Implementation-Version': version,
+                'Main-Class': 'mainPackage.Main'
+    }
+    baseName = 'PantographApp'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+

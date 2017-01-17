@@ -103,7 +103,7 @@ public class MainWindowController implements Initializable{
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("jogWindowStyle.fxml"));
         jogWindow.setTitle("Pantograph");
         jogWindow.setScene(new Scene(root, 380, 280));
-        jogWindow.getIcons().add(new javafx.scene.image.Image("manipulator_logo.png"));
+        jogWindow.getIcons().add(new javafx.scene.image.Image("images/manipulator_logo.png"));
         jogWindow.show();
 
 
@@ -215,7 +215,7 @@ public class MainWindowController implements Initializable{
     @FXML private void openButtonClicked() throws IOException {
         Stage loadWindow;
         loadWindow=MainModel.getInstance().getLoadStage();
-        loadWindow.getIcons().add(new javafx.scene.image.Image("manipulator_logo.png"));
+        loadWindow.getIcons().add(new javafx.scene.image.Image("images/manipulator_logo.png"));
         loadWindow.show();
     }
 
@@ -223,7 +223,7 @@ public class MainWindowController implements Initializable{
         Stage saveWindow;
         MainModel.getInstance().setCommandLine(codeArea.getText());
         saveWindow=MainModel.getInstance().getSaveStage();
-        saveWindow.getIcons().add(new javafx.scene.image.Image("manipulator_logo.png"));
+        saveWindow.getIcons().add(new javafx.scene.image.Image("images/manipulator_logo.png"));
         saveWindow.show();
     }
 
@@ -238,7 +238,7 @@ public class MainWindowController implements Initializable{
     @FXML private void pathDirectoryClicked() throws IOException {
         Stage pathWindow;
         pathWindow=MainModel.getInstance().getEditStage();
-        pathWindow.getIcons().add(new javafx.scene.image.Image("manipulator_logo.png"));
+        pathWindow.getIcons().add(new javafx.scene.image.Image("images/manipulator_logo.png"));
         pathWindow.show();
 
     }
@@ -247,7 +247,7 @@ public class MainWindowController implements Initializable{
     @FXML private void aboutButtonClicked(){
         Stage aboutWindow;
         aboutWindow=MainModel.getInstance().getAboutStage();
-        aboutWindow.getIcons().add(new javafx.scene.image.Image("manipulator_logo.png"));
+        aboutWindow.getIcons().add(new javafx.scene.image.Image("images/manipulator_logo.png"));
         aboutWindow.show();
 
     }

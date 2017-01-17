@@ -31,11 +31,11 @@ public class Main extends Application {
         Parent root6 = FXMLLoader.load(getClass().getClassLoader().getResource("saveStyle.fxml"));
         Parent root7 = FXMLLoader.load(getClass().getClassLoader().getResource("aboutStyle.fxml"));
 
-        MainModel.getInstance().currentStage().getIcons().add(new Image("manipulator_logo.png"));
+        MainModel.getInstance().currentStage().getIcons().add(new Image("images/manipulator_logo.png"));
 
 
         // set startWindow
-        startWindow.getIcons().add(new Image("manipulator_logo.png"));
+        startWindow.getIcons().add(new Image("images/manipulator_logo.png"));
         //startWindow.
         startWindow.setTitle("Pantograph");
         startWindow.setScene(new Scene(root3, 340, 200));
